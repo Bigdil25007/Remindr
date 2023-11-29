@@ -1,0 +1,45 @@
+architecture site:
+
+page d'accueil -> dashboard (affichage des rappels puis groupe)
+page de log
+
+
+page créer un groupe (acessible depuis la page d'accueil)
+page consulter groupe (afficher rappels liés) (accessible depuis page accueil)
+
+(page afficher groupe (contient l'affichage rappel) -> affichage rappel (consulter, créer, modifier et supprimer))
+
+
+groupe: min 1
+
+
+architecture BdD:
+
+user:
+	nom
+	mdp
+	PP
+
+	
+appartenir :
+	user
+	groupe
+
+
+groupe:
+	nom (unique)
+
+
+rappel:
+	titre
+	description
+	date
+	heure echeance
+	groupeID
+
+
+finir:
+	user
+	rappel
+	check (bool)
+
