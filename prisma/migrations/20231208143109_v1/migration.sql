@@ -1,9 +1,9 @@
 -- CreateTable
 CREATE TABLE `Users` (
     `IDUser` INTEGER NOT NULL AUTO_INCREMENT,
+    `mail` VARCHAR(191) NOT NULL,
     `nom` VARCHAR(191) NOT NULL,
     `mdp` VARCHAR(191) NOT NULL,
-    `pp` VARCHAR(191) NULL,
 
     PRIMARY KEY (`IDUser`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
