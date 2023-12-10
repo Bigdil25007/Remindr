@@ -1,0 +1,155 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>RemindR</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .form-container {
+                max-width: 550px;
+                padding: 30px;
+                border: 2px solid #000000;
+                border-radius: 10px;
+                background-color: #e6e5e5;
+                margin: 50px auto; /* Centrage vertical */
+            }
+
+            /* Style pour le bouton */
+            .btn-submit {
+                margin-top: 15px;
+                width: 40%;      
+            }
+
+            .bouton{
+                display: flex;
+                justify-content: right;
+            }
+            
+            body {
+                display: flex;
+                flex-direction: column;
+                margin: 50px 0; /* 50px haut et bas, 0 gauche et  droite */
+            }
+
+            main {
+                flex-grow: 1;
+            }
+
+            footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                background-color: #f8f9fa; /* Couleur de fond du footer */
+            }
+
+            footer p {
+                margin: 0px; /* Supprime la marge par défaut pour le paragraphe du footer */
+                color: #000000; /* Couleur du texte du footer */
+            }
+
+            .header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                text-align: center;
+                background-color: #f8f9fa; /* Couleur de fond du header */
+                z-index: 1000; /* S'assure que le header reste au-dessus des autres éléments */
+            }
+
+            .box-container {
+                display: flex;
+                padding: 20px;
+            }
+
+            .box {
+                border: 2px solid #000000;
+                border-radius: 15px;
+            }
+
+            .rappel-pair {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                width: 70%;
+            }
+
+            .groupe-pair {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                width: 30%;
+                margin-right: 20px;
+            }
+
+            .rappel-box {
+                background-color: lightblue;
+                width: 100%;
+            }
+            .groupe-box {
+                background-color: lightgreen;
+                width: 100%;
+            }
+            
+            .table-container {
+                display: flex;
+                justify-content: space-between;
+                height: auto; 
+                border: 2px solid #000000;
+                margin-top: 20px; 
+                padding: 20px;
+                width: 100%; 
+                border-radius: 5px;
+            }
+
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                border: 1px solid black;
+                padding: 8px;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header class="header navbar navbar-expand-lg">
+            <a class="navbar-brand" href="/dashboard">RemindR</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard/inscription">S'inscrire</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard/connexion">Se connecter</a>
+                    </li>
+                </ul>
+        </div>
+    </header>
+
+        {{{body}}}
+
+        <footer>
+            <p>&copy; 2023 Remindr. Tous droits réservés.</p>
+        </footer>
+
+    </body>
+
+    </html>
