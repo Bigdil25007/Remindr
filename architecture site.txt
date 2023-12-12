@@ -17,8 +17,9 @@ architecture BdD:
 
 user:
 	nom
+	prenom
+	email
 	mdp
-	PP
 
 	
 appartenir :
@@ -33,9 +34,10 @@ groupe:
 rappel:
 	titre
 	description
-	date
-	heure echeance
+	date creation
+	date echeance
 	groupeID
+	nomCreateur
 
 
 finir:
