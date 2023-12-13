@@ -53,8 +53,7 @@ routeur.post('/inscription', async (req, res) => {
         res.redirect('/dashboard');
 
     } catch (err) {
-        res.send(err);
-        //res.redirect('/inscription/3');
+        res.redirect('/inscription/3');
     }
 })
 

@@ -20,7 +20,6 @@ routeur.get('/connexion/:error', (req, res) => {
 })
 
 routeur.post('/connexion', async (req, res) => {
-    console.log("hello");
     try {
 
         const data = req.body;
