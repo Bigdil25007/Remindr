@@ -20,8 +20,9 @@ routeur.get('/connexion/:error', (req, res) => {
 })
 
 routeur.post('/connexion', async (req, res) => {
+    console.log("hello");
     try {
-        console.log("hello");
+
         const data = req.body;
         const user = await middleware.findUser(data.email);
 

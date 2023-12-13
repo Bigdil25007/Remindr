@@ -45,7 +45,7 @@ routeur.post('/inscription', async (req, res) => {
         }
 
         //Ajout de l'utilisateur dans la base de données
-        await middleware.addUser(user);
+        await middleware.addUser(profil);
 
         //Récupération du profil depuis la BdD et stockage en session
         const user = await middleware.findUser(data.email);
@@ -53,7 +53,8 @@ routeur.post('/inscription', async (req, res) => {
         res.redirect('/dashboard');
 
     } catch (err) {
-        res.redirect('/inscription/3')
+        res.send(err);
+        //res.redirect('/inscription/3');
     }
 })
 
