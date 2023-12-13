@@ -26,12 +26,12 @@ model Groups {
 }
 
 model Reminders {
-  IDRappel      Int      @id @default(autoincrement())
-  titre         String
-  description   String
-  date          DateTime @db.DateTime
-  heureEcheance String
-  Finir         Finir?
+  IDRappel     Int      @id @default(autoincrement())
+  titre        String
+  description  String
+  dateCreation DateTime @db.DateTime
+  dateFin      DateTime @db.DateTime
+  Finir        Finir?
 }
 
 model Appartenir {
