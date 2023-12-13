@@ -7,6 +7,8 @@ const port = 3010;
 
 //Include fichier JS
 const connexionController = require('./Controllers/connexionControl');
+const inscriptionController = require('./Controllers/inscriptionControl');
+
 const connexionRouteur = require('./Routers/ConnexionRouteur');
 const dashboardRouteur = require('./Routers/DashboardRouter');
 const inscriptionRouteur = require('./Routers/InscriptionRouteur');
@@ -33,7 +35,9 @@ app.set('views', './views');
 app.use(dashboardRouteur);
 app.use(inscriptionRouteur);
 app.use(connexionRouteur);
+
 app.use(connexionController);
+app.use(inscriptionController);
 
 
 app.get('/', (req, res) => {
