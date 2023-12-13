@@ -1,9 +1,8 @@
 const express = require('express');
 const routeur = express.Router();
 
-routeur.get('/dashboard', (req, res) => {
-  res.render('home');
+routeur.get('/inscription', (req, res) => {
+  res.render('Inscription');
 });
-
 
 module.exports = routeur;

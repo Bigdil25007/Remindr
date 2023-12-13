@@ -1,10 +1,10 @@
 const express = require('express');
-const app = express();
-const crypto = require('crypto');
+const routeur = express.Router();
+const SHA256 = require("crypto-js/sha256");
 
 const middleware = require('../Middleware/connexionMiddle');
 
-app.get('/login/:error', (req, res) => {
+routeur.get('/connexion/:error', (req, res) => {
     switch (req.params.error) {
         case '0':
             res.send('Email incorrect');
@@ -20,21 +20,25 @@ app.get('/login/:error', (req, res) => {
     }
 })
 
-app.post('/login', (req, res, next) => {
+routeur.get('/connexion', (req, res) => {
+    console.log("hello");
+})
+
+routeur.post('/connexion', (req, res, next) => {
     try {
+        console.log('essaie connexion');
         const data = req.body
         const user = middleware.findUser(data.email)
-
-        if (user && user.mdp === crypto.createHash('sha256').update(data.mdp).digest('hex')) {
-            req.session.userId = user.IDUser
-            req.session.userNom = user.nom
-            req.session.userPrenom = user.prenom
-
+        console.log(`user = ${user}`);
+        if (user && user.mdp === CryptoJS.SHA256(data.mdp).toString()) {
+            req.session.user = user
             res.redirect('/dashboard')
         } else {
-            res.redirect('/login/1')
+            res.redirect('/connexion/1')
         }
     } catch (err) {
-        res.redirect('/login/0')
+        res.redirect('/connexion/0')
     }
 })
+
+module.exports = routeur;

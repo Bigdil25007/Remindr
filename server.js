@@ -5,6 +5,13 @@ const session = require('express-session');
 const app = express();
 const port = 3010;
 
+//Include fichier JS
+const connexionController = require('./Controllers/connexionControl');
+const connexionRouteur = require('./Routers/ConnexionRouteur');
+//const dashboardRouteur = require('./Routers/DashboardRouteur');
+const inscriptionRouteur = require('./Routers/InscriptionRouteur');
+
+
 app.use(express.static('static'));
 
 //Body-parser pour récupérer les POST
@@ -17,13 +24,21 @@ app.use(session({
   saveUninitialized: true
 }));
 
-const DashboardRouter = express.Router();
-app.use('/dashboard', DashboardRouter);
-
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 // Configuration du dossier des vues
 app.set('views', './views');
+
+//Ajout des modifs sur les routes
+//app.use(dashboardRouteur);
+app.use(inscriptionRouteur);
+app.use(connexionRouteur);
+app.use(connexionController);
+
+
+const DashboardRouter = express.Router();
+app.use('/dashboard', DashboardRouter);
+
 
 app.get('/', (req, res) => {
   res.redirect('/dashboard');
@@ -48,13 +63,13 @@ DashboardRouter.get('/', (req, res) => {
   res.render('home', data);
 });
 
-app.get('/inscription', (req, res) => {
-  res.render('Inscription');
-});
+// app.get('/inscription', (req, res) => {
+//   res.render('Inscription');
+// });
 
-app.get('/connexion', (req, res) => {
-  res.render('Connexion');
-});
+// app.get('/connexion', (req, res) => {
+//   res.render('Connexion');
+// });
 
 // Gestion des erreurs 404 pour les routes non définies
 app.use((req, res, next) => {
