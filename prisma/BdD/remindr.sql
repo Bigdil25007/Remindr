@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 13 déc. 2023 à 07:02
+-- Généré le : mer. 13 déc. 2023 à 11:50
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -65,7 +65,7 @@ CREATE TABLE `reminders` (
   `IDRappel` int(11) NOT NULL,
   `titre` varchar(191) NOT NULL,
   `description` varchar(191) NOT NULL,
-  `dateCreation` datetime NOT NULL DEFAULT current_timestamp(),
+  `dateCreation` datetime NOT NULL,
   `dateFin` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -79,7 +79,8 @@ CREATE TABLE `users` (
   `IDUser` int(11) NOT NULL,
   `mail` varchar(191) NOT NULL,
   `nom` varchar(191) NOT NULL,
-  `mdp` varchar(191) NOT NULL
+  `mdp` varchar(191) NOT NULL,
+  `prenom` varchar(191) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -119,7 +120,8 @@ ALTER TABLE `reminders`
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`IDUser`);
+  ADD PRIMARY KEY (`IDUser`),
+  ADD UNIQUE KEY `Users_mail_key` (`mail`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées

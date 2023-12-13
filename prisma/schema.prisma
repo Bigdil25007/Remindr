@@ -12,8 +12,9 @@ datasource db {
 
 model Users {
   IDUser     Int         @id @default(autoincrement())
-  mail       String
+  mail       String      @unique
   nom        String
+  prenom     String
   mdp        String
   Appartenir Appartenir?
   Finir      Finir?
