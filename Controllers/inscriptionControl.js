@@ -38,7 +38,7 @@ routeur.post('/inscription', async (req, res) => {
         }
 
         const profil = {
-            email: data.email,
+            mail: data.email,
             nom: data.nom,
             prenom: data.prenom,
             mdp: SHA256(data.mdp).toString()
