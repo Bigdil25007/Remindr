@@ -1,44 +1,42 @@
-<body>
-  <div class="box-container">
-    <div class="groupe-pair">
-      <div class="box groupe-box">
-        <h2>Groupes</h2>
-      </div>
-      <div class="table-container">
-        <table>
-          <tr>
-            <th>GroupeID</th>
-            <th>Nom</th>
-          </tr>
-          {{#each groups}}
-          <tr>
-            <td>{{this.GroupeID}}</td>
-            <td>{{this.nom}}</td>
-          </tr>
-          {{/each}}
-        </table>
-      </div>
+<div class="box-container">
+  <div class="groupe-pair">
+    <div class="box groupe-box">
+      <h2>Groupes</h2>
     </div>
-    <div class="rappel-pair">
-      <div class="box rappel-box">
-        <h2>Rappels</h2>
-      </div>
-      <div class="table-container">
-        <table>
-          <tr>
-            <th>Titre</th>
-            <th>Date</th>
-            <th>Description</th>
-          </tr>
-          {{#each rappels}}
-          <tr>
-            <td>{{this.titre}}</td>
-            <td>{{this.date}}</td>
-            <td>{{this.description}}</td>
-          </tr>
-          {{/each}}
-        </table>
-      </div>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>GroupeID</th>
+          <th>Nom</th>
+        </tr>
+        {{#each groups}}
+        <tr>
+          <td>{{this.GroupeID}}</td>
+          <td>{{this.nom}}</td>
+        </tr>
+        {{/each}}
+      </table>
     </div>
   </div>
-</body>
+  <div class="rappel-pair">
+    <div class="box rappel-box">
+      <h2>Rappels</h2>
+    </div>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Titre</th>
+          <th>Date</th>
+          <th>Description</th>
+        </tr>
+        {{#each rappels}}
+        <tr>
+          <td>{{this.titre}}</td>
+          <td>{{this.date}}</td>
+          <td>{{this.description}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+</div>
