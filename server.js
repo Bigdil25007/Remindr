@@ -8,6 +8,7 @@ const port = 3010;
 //Include fichier JS
 const layout = require('./Middleware/layoutMiddle');
 const connexionRouteur = require('./Routers/ConnexionRouteur');
+const deconnexionRouteur = require('./Routers/DeconnexionRouteur');
 const dashboardRouteur = require('./Routers/DashboardRouter');
 const inscriptionRouteur = require('./Routers/InscriptionRouteur');
 
@@ -35,7 +36,7 @@ app.use(layout);
 app.use(dashboardRouteur);
 app.use(inscriptionRouteur);
 app.use(connexionRouteur);
-
+app.use(deconnexionRouteur);
 
 app.get('/', (req, res) => {
   res.redirect('/dashboard');
