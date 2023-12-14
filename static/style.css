@@ -20,7 +20,7 @@ body {
     margin-top: 60px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    width: 30%;
+    width: 35%;
     height: auto;
 }
 
@@ -44,6 +44,7 @@ body {
     width: 40%;
 }
 
+/*Groupes et rapels*/
 .box-container {
     display: flex;
     padding: 20px;
@@ -53,10 +54,9 @@ body {
 .box {
     border: 2px solid #000000;
     border-radius: 15px;
+    padding-top: 5px;
 }
 
-
-/*Groupes et rapels*/
 .pair{
     display: flex;
     flex-direction: column;
@@ -81,6 +81,8 @@ body {
     background-color: lightgreen;
     width: 100%;
 }
+
+
 
 
 /*formulaire*/
