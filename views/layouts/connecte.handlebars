@@ -21,8 +21,13 @@
                     <a class="nav-link" href="/dashboard">Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/inscription">Déconnexion</a>
+                    <a class="nav-link" href="/deconnexion">Déconnexion</a>
                 </li>
+                {{#if username}}
+                <li class="nav-item">
+                    <a class="nav-link">{{username}}</a>
+                </li>
+                {{/if}}
             </ul>
         </div>
     </header>
