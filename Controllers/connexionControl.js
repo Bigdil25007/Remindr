@@ -37,7 +37,7 @@ routeur.post('/connexion', async (req, res) => {
             return;
         }
 
-        req.session.user = user;
+        //req.session.user = user;
         res.redirect('/dashboard');
 
     } catch (err) {
