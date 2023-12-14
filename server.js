@@ -1,6 +1,6 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
-//const session = require('express-session');
+const session = require('express-session');
 
 const app = express();
 const port = 3010;
@@ -20,11 +20,11 @@ app.use(express.static('static'));
 app.use(express.urlencoded({ extended: true }));
 
 // Configuration de la session
-/*app.use(session({
+app.use(session({
   secret: 'SECRET',
   resave: false,
   saveUninitialized: true
-}));*/
+}));
 
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');

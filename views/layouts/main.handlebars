@@ -18,6 +18,10 @@
             margin: 0;
         }
 
+        main {
+            flex-grow: 1;
+        }
+
         h1 {
             text-align: center;
             color: #333;
@@ -48,18 +52,6 @@
             margin-left: 4%;
         }
 
-        /*formulaire*/
-        .form-container {
-            max-width: 550px;
-            padding: 30px;
-            border: 2px solid #000000;
-            border-radius: 10px;
-            background-color: #e6e5e5;
-            margin: 50px auto;
-            /* Centrage vertical */
-        }
-
-        /* Style pour le bouton */
         .btn-submit {
             margin-top: 15px;
             width: 40%;
@@ -70,15 +62,13 @@
             justify-content: right;
         }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            margin: 50px 0;
-            /* 50px haut et bas, 0 gauche et  droite */
-        }
-
-        main {
-            flex-grow: 1;
+        .form-container {
+            max-width: 550px;
+            padding: 30px;
+            border: 2px solid #000000;
+            border-radius: 10px;
+            background-color: #e6e5e5;
+            margin: 50px auto;
         }
 
         footer {
@@ -88,14 +78,11 @@
             text-align: center;
             padding: 15px 0;
             background-color: #f8f9fa;
-            /* Couleur de fond du footer */
         }
 
         footer p {
             margin: 0px;
-            /* Supprime la marge par défaut pour le paragraphe du footer */
             color: #000000;
-            /* Couleur du texte du footer */
         }
 
         .header {
@@ -104,9 +91,7 @@
             width: 100%;
             text-align: center;
             background-color: #f8f9fa;
-            /* Couleur de fond du header */
             z-index: 1000;
-            /* S'assure que le header reste au-dessus des autres éléments */
         }
 
         .box-container {
@@ -146,6 +131,7 @@
             width: 100%;
         }
 
+
         .table-container {
             display: flex;
             justify-content: space-between;
@@ -162,8 +148,7 @@
             width: 100%;
         }
 
-        th,
-        td {
+        th, td {
             border: 1px solid black;
             padding: 8px;
             text-align: center;

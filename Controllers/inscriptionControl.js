@@ -50,9 +50,10 @@ routeur.post('/inscription', async (req, res) => {
         //Récupération du profil depuis la BdD et stockage en session
         const user = await middleware.findUser(data.email);
         req.session.user = user;
-        res.redirect('/dashboard');
+        return res.redirect('/dashboard');
 
     } catch (err) {
+        console.log('error', err)
         res.redirect('/inscription/3');
     }
 })
