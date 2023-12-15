@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 13 déc. 2023 à 11:50
+-- Généré le : ven. 15 déc. 2023 à 12:36
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -32,6 +32,10 @@ CREATE TABLE `appartenir` (
   `IDGroup` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `appartenir`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -44,6 +48,11 @@ CREATE TABLE `finir` (
   `Check` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `finir`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -55,6 +64,11 @@ CREATE TABLE `groups` (
   `nom` varchar(191) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Déchargement des données de la table `groups`
+--
+
+
 -- --------------------------------------------------------
 
 --
@@ -65,9 +79,14 @@ CREATE TABLE `reminders` (
   `IDRappel` int(11) NOT NULL,
   `titre` varchar(191) NOT NULL,
   `description` varchar(191) NOT NULL,
-  `dateCreation` datetime NOT NULL,
-  `dateFin` datetime NOT NULL
+  `dateCreation` datetime NOT NULL DEFAULT current_timestamp(),
+  `dateFin` datetime NOT NULL,
+  `IDGroup` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `reminders`
+--
 
 -- --------------------------------------------------------
 
@@ -79,9 +98,17 @@ CREATE TABLE `users` (
   `IDUser` int(11) NOT NULL,
   `mail` varchar(191) NOT NULL,
   `nom` varchar(191) NOT NULL,
-  `mdp` varchar(191) NOT NULL,
-  `prenom` varchar(191) NOT NULL
+  `prenom` varchar(191) NOT NULL,
+  `mdp` varchar(191) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`IDUser`, `mail`, `nom`, `prenom`, `mdp`) VALUES
+(1, 'bilal25007@gmail.com', 'oulahal', 'Bilal', 'c81b021331344adcdd57a84413824fe14faa33769d9982e13d00c260e643b0f7'),
+(2, 'test@gmail.com', 'r', 'r', '454349e422f05297191ead13e21d3db520e5abef52055e4964b82fb213f593a1');
 
 --
 -- Index pour les tables déchargées
@@ -114,7 +141,8 @@ ALTER TABLE `groups`
 -- Index pour la table `reminders`
 --
 ALTER TABLE `reminders`
-  ADD PRIMARY KEY (`IDRappel`);
+  ADD PRIMARY KEY (`IDRappel`),
+  ADD KEY `Reminders_IDGroup_fkey` (`IDGroup`);
 
 --
 -- Index pour la table `users`
@@ -131,19 +159,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `IDGroup` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDGroup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `reminders`
 --
 ALTER TABLE `reminders`
-  MODIFY `IDRappel` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDRappel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `IDUser` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
@@ -162,6 +190,12 @@ ALTER TABLE `appartenir`
 ALTER TABLE `finir`
   ADD CONSTRAINT `Finir_IDRappel_fkey` FOREIGN KEY (`IDRappel`) REFERENCES `reminders` (`IDRappel`) ON UPDATE CASCADE,
   ADD CONSTRAINT `Finir_IDUser_fkey` FOREIGN KEY (`IDUser`) REFERENCES `users` (`IDUser`) ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `reminders`
+--
+ALTER TABLE `reminders`
+  ADD CONSTRAINT `Reminders_IDGroup_fkey` FOREIGN KEY (`IDGroup`) REFERENCES `groups` (`IDGroup`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -24,6 +24,7 @@ model Groups {
   IDGroup    Int         @id @default(autoincrement())
   nom        String      @unique
   Appartenir Appartenir?
+  Reminders  Reminders[]
 }
 
 model Reminders {
@@ -33,6 +34,8 @@ model Reminders {
   dateCreation DateTime @db.DateTime
   dateFin      DateTime @db.DateTime
   Finir        Finir?
+  IDGroup      Int
+  group        Groups   @relation(fields: [IDGroup], references: [IDGroup])
 }
 
 model Appartenir {
