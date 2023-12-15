@@ -13,7 +13,7 @@ routeur.get('/groupes', (req, res) => {
       };
     
       // Données pour les rappels
-      for (let i = 1; i <= 10; i++) {
+      for (let i = 1; i <= 5; i++) {
         data.rappels.push({ titre: `titre_rappel ${i}`, date_echeance: `XX/XX/XXXX`, description: `blablalba` });
       }
   
