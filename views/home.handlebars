@@ -12,7 +12,9 @@
         {{#each groups}}
         <tr>
           <td>{{this.GroupeID}}</td>
-          <td>{{this.nom}}</td>
+          <td>
+             <a class="groups-data" href="/groupes">{{this.nom}}</a>
+          </td>
         </tr>
         {{/each}}
       </table>
@@ -27,13 +29,13 @@
         <tr>
           <th>Titre</th>
           <th>Date</th>
-          <th>Description</th>
+          <th>Groupe référence</th>
         </tr>
         {{#each rappels}}
         <tr>
           <td>{{this.titre}}</td>
           <td>{{this.date}}</td>
-          <td>{{this.description}}</td>
+          <td>{{this.GrRef}}</td>
         </tr>
         {{/each}}
       </table>

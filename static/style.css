@@ -8,6 +8,10 @@ body {
     margin: 0;
 }
 
+.Text-imp{
+    font-size: 2em
+}
+
 /* Boutons*/
 .bouton {
     display: flex;
@@ -120,6 +124,27 @@ td {
     text-align: center;
 }
 
+.groups-data{
+    text-decoration: none;
+    color: #000000;
+}
+
+.page-group{
+    text-align: center;
+    width: 95%;
+}
+
+.titre{
+    width: 20%;
+}
+
+.date_echeance{
+    width: 20%;
+}
+
+.description{
+    width: 60%;
+}
 
 /*header et footer*/
 footer {
@@ -159,3 +184,4 @@ footer p {
 .collapse{
     margin-right: 1%;
 }
+

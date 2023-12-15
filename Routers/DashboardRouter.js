@@ -15,7 +15,7 @@ routeur.get('/dashboard', (req, res) => {
 
     // Données pour les rappels
     for (let i = 1; i <= 10; i++) {
-      data.rappels.push({ titre: `titre_rappel ${i}`, date: `date_rappel ${i}`, description: `description ${i}` });
+      data.rappels.push({ titre: `titre_rappel ${i}`, date: `date_rappel ${i}`, GrRef: `GroupeID : ${i}` });
     }
 
     res.render('home', data);
