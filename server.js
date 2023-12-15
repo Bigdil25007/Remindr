@@ -11,6 +11,8 @@ const connexionRouteur = require('./Routers/ConnexionRouteur');
 const deconnexionRouteur = require('./Routers/DeconnexionRouteur');
 const dashboardRouteur = require('./Routers/DashboardRouter');
 const inscriptionRouteur = require('./Routers/InscriptionRouteur');
+const groupesRouteur = require('./Routers/GroupesRouteur');
+
 
 
 app.use(express.static('static'));
@@ -37,6 +39,9 @@ app.use(dashboardRouteur);
 app.use(inscriptionRouteur);
 app.use(connexionRouteur);
 app.use(deconnexionRouteur);
+app.use(deconnexionRouteur);
+app.use(groupesRouteur);
+
 
 app.get('/', (req, res) => {
   res.redirect('/dashboard');
