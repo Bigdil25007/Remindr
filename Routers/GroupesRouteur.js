@@ -40,7 +40,7 @@ function FormatterTab(tableau) {
   On a donc un tableau à 1 dimension au lieu de 2
   Ensuite on trie le tableau en fonction des dates dans l'ordre décroissant
   */
-  let tabFormat = tableau.flat().sort(function (a, b) {
+  let tabFormat = tableau.sort(function (a, b) {
     // Convertir les dates en objets Date
     let dateA = new Date(a.dateFin);
     let dateB = new Date(b.dateFin);
@@ -83,7 +83,6 @@ routeur.get('/groupes/:idGroup', async (req, res) => {
   const rappels = await findRappels(group.IDGroup);
   const data = FormatterTab(rappels);
 
-  console.log(data);
   res.render('groupes', data);
 });
 
