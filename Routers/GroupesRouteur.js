@@ -33,6 +33,18 @@ async function findRappels(groupId) {
   });
 }
 
+async function findMembres(groupId) {
+  return membres = await prisma.users.findMany({
+    where: {
+      Appartenir: {
+        is: {
+          IDGroup: groupId,
+        },
+      },
+    },
+  });
+}
+
 
 function FormatterTab(tableau) {
   /*
@@ -82,6 +94,7 @@ routeur.get('/groupes/:idGroup', async (req, res) => {
 
   const rappels = await findRappels(group.IDGroup);
   const data = FormatterTab(rappels);
+  data.membres = await findMembres(group.IDGroup);
 
   res.render('groupes', data);
 });
