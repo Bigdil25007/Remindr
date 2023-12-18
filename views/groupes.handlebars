@@ -10,10 +10,10 @@
         <th class="date_echeance">Date_échéance</th>
         <th class="description">Description</th>
       </tr>
-      {{#each rappels}}
+      {{#each rappelsAfaire}}
       <tr class="space">
         <td>{{this.titre}}</td>
-        <td>{{this.date_echeance}}</td>
+        <td>{{this.dateFin}}</td>
         <td>{{this.description}}</td>
       </tr>
       {{/each}}
@@ -30,10 +30,10 @@
         <th class="date_echeance">Date_échéance</th>
         <th class="description">Description</th>
       </tr>
-      {{#each rappels}}
+      {{#each rappelsDepasse}}
       <tr class="data-dépassés">
         <td>{{this.titre}}</td>
-        <td>{{this.date_echeance}}</td>
+        <td>{{this.dateFin}}</td>
         <td>{{this.description}}</td>
       </tr>
       {{/each}}
