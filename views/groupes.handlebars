@@ -1,8 +1,29 @@
 <div class="page-group">
+
+  <div class="box rappel-box">
+    <h2>Rappels</h2>
+  </div>
+  <div class="table-container top-box">
+    <table>
+      <tr>
+        <th class="titre">Titre</th>
+        <th class="date_echeance">Date_échéance</th>
+        <th class="description">Description</th>
+      </tr>
+      {{#each rappels}}
+      <tr class="space">
+        <td>{{this.titre}}</td>
+        <td>{{this.date_echeance}}</td>
+        <td>{{this.description}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
+  
   <div class="box rappel-box">
     <h2>Rappels dépassés</h2>
   </div>
-  <div class="table-container top-box">
+  <div class="table-container">
     <table>
       <tr>
         <th class="titre">Titre</th>
@@ -19,23 +40,4 @@
     </table>
   </div>
 
-  <div class="box rappel-box">
-    <h2>Rappels</h2>
-  </div>
-  <div class="table-container">
-    <table>
-      <tr>
-        <th class="titre">Titre</th>
-        <th class="date_echeance">Date_échéance</th>
-        <th class="description">Description</th>
-      </tr>
-      {{#each rappels}}
-      <tr>
-        <td>{{this.titre}}</td>
-        <td>{{this.date_echeance}}</td>
-        <td>{{this.description}}</td>
-      </tr>
-      {{/each}}
-    </table>
-  </div>
 </div>
