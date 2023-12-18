@@ -103,6 +103,7 @@ body {
 /* Contenue rappels et groupes (les données) */
 .table-container {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     height: auto;
     border: 2px solid #000000;
@@ -152,6 +153,26 @@ td {
 
 .top-box{
     margin-bottom: 4%;
+}
+
+.BoutonCreateGroup {
+    text-align: center;
+    text-decoration: none;
+    background-color: #1ddd4763; 
+    padding: 10px 20px; 
+    border-radius: 5px;
+    margin-top: 15px;
+    width: 70%;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+.BoutonCreateGroup:hover {
+    background-color: #1ddd479d; 
+}
+
+.CreateGroupButton{
+    margin-top: 20px;
 }
 
 /*header et footer*/

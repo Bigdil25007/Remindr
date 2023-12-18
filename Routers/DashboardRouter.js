@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 async function findGroups(userId) {
   return groups = await prisma.groups.findMany({
     where: {
-      Appartenir: {
+      appartenir: {
         is: {
           IDUser: userId,
         },

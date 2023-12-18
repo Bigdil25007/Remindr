@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 15 déc. 2023 à 12:36
+-- Généré le : lun. 18 déc. 2023 à 15:53
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -36,6 +36,9 @@ CREATE TABLE `appartenir` (
 -- Déchargement des données de la table `appartenir`
 --
 
+INSERT INTO `appartenir` (`IDUser`, `IDGroup`) VALUES
+(1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +55,8 @@ CREATE TABLE `finir` (
 -- Déchargement des données de la table `finir`
 --
 
+INSERT INTO `finir` (`IDUser`, `IDRappel`, `Check`) VALUES
+(1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -68,6 +73,8 @@ CREATE TABLE `groups` (
 -- Déchargement des données de la table `groups`
 --
 
+INSERT INTO `groups` (`IDGroup`, `nom`) VALUES
+(1, 'group1');
 
 -- --------------------------------------------------------
 
@@ -87,6 +94,9 @@ CREATE TABLE `reminders` (
 --
 -- Déchargement des données de la table `reminders`
 --
+
+INSERT INTO `reminders` (`IDRappel`, `titre`, `description`, `dateCreation`, `dateFin`, `IDGroup`) VALUES
+(1, 'Terminer Remindr', 'Finir avant le 22 décembre le projet', '2023-12-15 12:19:26', '2023-12-22 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -108,7 +118,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`IDUser`, `mail`, `nom`, `prenom`, `mdp`) VALUES
 (1, 'bilal25007@gmail.com', 'oulahal', 'Bilal', 'c81b021331344adcdd57a84413824fe14faa33769d9982e13d00c260e643b0f7'),
-(2, 'test@gmail.com', 'r', 'r', '454349e422f05297191ead13e21d3db520e5abef52055e4964b82fb213f593a1');
+(2, 'test@gmail.com', 'r', 'r', '454349e422f05297191ead13e21d3db520e5abef52055e4964b82fb213f593a1'),
+(3, 'momo@momo', 'chemarin', 'momo', '3100486406b39efc3f3d3565bc97cc3b9e2d7b6e3427b194f4442ef4beb05b41');
 
 --
 -- Index pour les tables déchargées
@@ -171,7 +182,7 @@ ALTER TABLE `reminders`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `IDUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées

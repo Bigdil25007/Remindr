@@ -14,7 +14,7 @@ async function findGroup(userId, groupId) {
           IDGroup: groupId,
         },
         {
-          Appartenir: {
+          appartenir: {
             is: {
               IDUser: userId,
             },
@@ -36,7 +36,7 @@ async function findRappels(groupId) {
 async function findMembres(groupId) {
   return membres = await prisma.users.findMany({
     where: {
-      Appartenir: {
+      appartenir: {
         is: {
           IDGroup: groupId,
         },
