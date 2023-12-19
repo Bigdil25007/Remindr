@@ -15,7 +15,7 @@ async function findGroup(userId, groupId) {
         },
         {
           appartenir: {
-            is: {
+            some: {
               IDUser: userId,
             },
           },
@@ -37,7 +37,7 @@ async function findMembres(groupId) {
   return membres = await prisma.users.findMany({
     where: {
       appartenir: {
-        is: {
+        some: {
           IDGroup: groupId,
         },
       },
@@ -139,22 +139,22 @@ routeur.get('/groupes/:idGroup', async (req, res) => {
 
 
 routeur.post('/groupes/:idGroup', async (req, res) => {
-  try {
-    //Ajout d'un utilisateur 
-    const email = req.body.mail;
+  //try {
+  //Ajout d'un utilisateur 
+  const email = req.body.mail;
 
-    //On regarde si la personne existe et si la personne n'est pas deja sur le groupe
-    const userID = await CheckUserOutsideGroup(email, parseInt(req.params.idGroup, 10));
+  //On regarde si la personne existe et si la personne n'est pas deja sur le groupe
+  const userID = await CheckUserOutsideGroup(email, parseInt(req.params.idGroup, 10));
 
-    if (!userID) {
-      return;
-    }
+  if (!userID) {
+    return;
+  }
 
-    await addMember(userID, parseInt(req.params.idGroup, 10));
-  } catch (err) {
+  await addMember(userID, parseInt(req.params.idGroup, 10));
+  /*} catch (err) {
     console.log(err);
     res.redirect('/error/X');
-  }
+  }*/
 });
 
 module.exports = routeur;
