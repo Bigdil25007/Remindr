@@ -35,10 +35,6 @@ body {
     width: 42%;
 }
 
-.btn-primary {
-    margin-right: 4%;
-}
-
 .btn-success {
     margin-left: 4%;
 }
@@ -130,7 +126,7 @@ td {
     color: #000000;
 }
 
-.page-group{
+.page-group {
     width: 95%;
     text-align: center;
 }
@@ -155,6 +151,13 @@ td {
     margin-bottom: 4%;
 }
 
+.page-group {
+    width: 95%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between; 
+}
+
 .BoutonCreateGroup {
     text-align: center;
     text-decoration: none;
@@ -174,6 +177,65 @@ td {
 .CreateGroupButton{
     margin-top: 20px;
 }
+
+.CreateUserButton{
+    margin-top: 20px;
+}
+
+.form-user-container{
+    padding: 30px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+}
+
+.Rappels_depasses{
+    background-color: #ff0000de;
+}
+
+.BoutonCreateUser {
+    text-align: center;
+    text-decoration: none;
+    background-color: lightblue; /* Choisissez une couleur différente si nécessaire */
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.BoutonCreateUser:hover {
+    background-color: rgba(120, 174, 192, 0.863);
+}
+
+.Right-section {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-left: 2%;
+}
+
+.user-list-box{
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#userListTable, #userListTable  tr {
+    display: table; 
+    width: 100%; 
+    table-layout: fixed; 
+}
+
+#userListTable {
+    display: block; 
+    max-height: 250px; 
+    overflow-y: auto;
+}
+
+.SeparateButtonAddUserAndRappel{
+    width: 70%;
+}
+
+
 
 /*header et footer*/
 footer {
