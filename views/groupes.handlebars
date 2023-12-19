@@ -1,43 +1,93 @@
 <div class="page-group">
 
-  <div class="box rappel-box">
-    <h2>Rappels</h2>
-  </div>
-  <div class="table-container top-box">
-    <table>
-      <tr>
-        <th class="titre">Titre</th>
-        <th class="date_echeance">Date_échéance</th>
-        <th class="description">Description</th>
-      </tr>
-      {{#each rappelsAfaire}}
-      <tr class="space">
-        <td>{{this.titre}}</td>
-        <td>{{this.dateFin}}</td>
-        <td>{{this.description}}</td>
-      </tr>
-      {{/each}}
-    </table>
-  </div>
+  <div class="SeparateButtonAddUserAndRappel">
+    <div class="box rappel-box">
+      <h2>Rappels</h2>
+    </div>
+    <div class="table-container top-box">
+      <table>
+        <tr>
+          <th class="titre">Titre</th>
+          <th class="date_echeance">Date_échéance</th>
+          <th class="description">Description</th>
+        </tr>
+        {{#each rappelsAfaire}}
+        <tr class="space">
+          <td>{{this.titre}}</td>
+          <td>{{this.dateFin}}</td>
+          <td>{{this.description}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
 
-  <div class="box rappel-box">
-    <h2>Rappels dépassés</h2>
+    <div class="box rappel-box Rappels_depasses">
+      <h2>Rappels dépassés</h2>
+    </div>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th class="titre">Titre</th>
+          <th class="date_echeance">Date_échéance</th>
+          <th class="description">Description</th>
+        </tr>
+        {{#each rappelsDepasse}}
+        <tr class="data-dépassés">
+          <td>{{this.titre}}</td>
+          <td>{{this.dateFin}}</td>
+          <td>{{this.description}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
   </div>
-  <div class="table-container">
-    <table>
-      <tr>
-        <th class="titre">Titre</th>
-        <th class="date_echeance">Date_échéance</th>
-        <th class="description">Description</th>
-      </tr>
-      {{#each rappelsDepasse}}
-      <tr class="data-dépassés">
-        <td>{{this.titre}}</td>
-        <td>{{this.dateFin}}</td>
-        <td>{{this.description}}</td>
-      </tr>
-      {{/each}}
-    </table>
-  </div>
+  
+
+
+  <div class="Right-section">
+    <button type="button" class="BoutonCreateUser" onclick="toggleUserForm()">Ajouter un utilisateur</button>
+    <form method="post" class="form-user-container CreateUserButton" id="createUserForm" style="display: none;">
+        <h2 class="mb-4">Formulaire d'ajout d'utilisateur</h2>
+        <div class="mb-3">
+            <label class="form-label">Email utilisateur</label>
+            <input type="email" class="form-control" id="emailUtilisateur" name="emailUtilisateur" required>
+        </div>
+        <div class="bouton">
+            <button type="submit" class="btn btn-primary btn-submit">Ajouter</button>
+        </div>
+    </form>
+
+    <div class="user-list-section">
+      <div class="box user-list-box">
+        <h2>Liste des utilisateurs</h2>
+        <div class="table-wrapper">
+          <table id="userListTable">
+            <tbody id="userList">
+              <!-- Les lignes du tableau sont ajoutées ici -->
+              <tr><td>user1@example.com</td></tr>
+              <tr><td>user2@example.com</td></tr>
+              <tr><td>user3@example.com</td></tr>
+              <tr><td>user4@example.com</td></tr>
+              <tr><td>user5@example.com</td></tr>
+              <!-- Supposons que vous avez plus de cinq utilisateurs -->
+              <tr><td>user6@example.com</td></tr>
+              <tr><td>user7@example.com</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  <script>
+    function toggleUserForm() {
+        var form = document.getElementById("createUserForm");
+        if (form.style.display === "none") {
+            form.style.display = "block";
+        } else {
+            form.style.display = "none";
+        }
+    }
+  </script>
 
 </div>
