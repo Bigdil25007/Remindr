@@ -20,23 +20,6 @@ routeur.get('/inscription', (req, res) => {
   res.render('Inscription');
 });
 
-routeur.get('/inscription/:error', (req, res) => {
-  switch (req.params.error) {
-    case '0':
-      res.send('Email déja utilisé');
-      break;
-
-    case '1':
-      res.send('Confirmation du mot de passe incorrect');
-      break;
-
-    default:
-      res.send("ERROR ! Merci de réessayer s'il vous plaît");
-      break;
-  }
-})
-
-
 routeur.post('/inscription', async (req, res) => {
   try {
     const data = req.body;
@@ -44,13 +27,13 @@ routeur.post('/inscription', async (req, res) => {
 
     // S'il existe déjà un utilisateur avec le même email
     if (test) {
-      res.redirect('/inscription/0');
+      res.redirect('/error/0');
       return;
     }
 
     // Si la confirmation du mot de passe n'est pas bonne
     if (data.mdp != data.confirmation) {
-      res.redirect('/inscription/1');
+      res.redirect('/error/1');
       return;
     }
 
@@ -70,7 +53,7 @@ routeur.post('/inscription', async (req, res) => {
     res.redirect('/dashboard');
 
   } catch (err) {
-    res.redirect('/inscription/3');
+    res.redirect('/error/X');
   }
 })
 

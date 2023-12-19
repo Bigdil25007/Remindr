@@ -15,12 +15,39 @@ async function findGroups(userId) {
   });
 }
 
+async function findGroupByName(nameGroup) {
+  return group = await prisma.groups.findUnique({
+    where: {
+      nom: nameGroup,
+    },
+  });
+}
+
 async function findRappels(groupId) {
   return rappels = await prisma.reminders.findMany({
     where: {
       IDGroup: groupId,
     },
   });
+}
+
+async function createGroup(nomGroupe) {
+  const groupe = await prisma.groups.create({
+    data: {
+      nom: nomGroupe,
+    },
+  });
+
+  return groupe.IDGroup;
+}
+
+async function addMember(userId, groupId) {
+  const appartenance = await prisma.appartenir.create({
+    data: {
+      IDUser: userId,
+      IDGroup: groupId,
+    },
+  })
 }
 
 function FormatterTab(tableau) {
@@ -57,34 +84,62 @@ function FormatterTab(tableau) {
 
 
 routeur.get('/dashboard', async (req, res) => {
-  if (!req.session.user) {
-    res.render('blocked');
-    return;
+  try {
+    if (!req.session.user) {
+      res.render('blocked');
+      return;
+    }
+
+    let data = {
+      groups: [],
+      rappelsAfaire: [],
+      rappelsDepasse: []
+    };
+
+    //Récupération des groupes
+    data.groups = await findGroups(req.session.user.IDUser);
+
+    //Récupération des rappels de chaque groupe
+    let rappels = [];
+
+    for (group in data.groups) {
+      resultat = await findRappels(group.IDGroup);
+      rappels.push(resultat);
+    }
+
+    const { rappelsAfaire, rappelsDepasse } = FormatterTab(rappels);
+
+    data.rappelsAfaire = rappelsAfaire;
+    data.rappelsDepasse = rappelsDepasse;
+
+    res.render('home', data);
+  } catch (err) {
+    res.redirect('/error/X');
   }
+});
 
-  let data = {
-    groups: [],
-    rappelsAfaire: [],
-    rappelsDepasse: []
-  };
+routeur.post('/dashboard', async (req, res) => {
+  try {
+    //Ajout d'un groupe
+    const nomGroup = req.body.nomGroupe;
 
-  //Récupération des groupes
-  data.groups = await findGroups(req.session.user.IDUser);
+    //On regarde si le nom existe déja
+    const group = await findGroupByName(nomGroup);
 
-  //Récupération des rappels de chaque groupe
-  let rappels = [];
+    if (group) {
+      res.redirect('/error/6');
+      return;
+    }
 
-  for (group in data.groups) {
-    resultat = await findRappels(group.IDGroup);
-    rappels.push(resultat);
+    //On crée le groupe, on ajoute l'utilisateur et on redirige
+    const groupId = await createGroup(nomGroup);
+    await addMember(req.session.user.IDUser, groupId);
+
+    res.redirect('/groupes/' + groupId);
+
+  } catch (err) {
+    res.redirect('/error/X');
   }
-
-  const { rappelsAfaire, rappelsDepasse } = FormatterTab(rappels);
-
-  data.rappelsAfaire = rappelsAfaire;
-  data.rappelsDepasse = rappelsDepasse;
-
-  res.render('home', data);
 });
 
 

@@ -12,6 +12,7 @@ const deconnexionRouteur = require('./Routers/DeconnexionRouteur');
 const dashboardRouteur = require('./Routers/DashboardRouter');
 const inscriptionRouteur = require('./Routers/InscriptionRouteur');
 const groupesRouteur = require('./Routers/GroupesRouteur');
+const erreurRouteur = require('./Routers/ErreurRouteur');
 
 
 
@@ -41,6 +42,7 @@ app.use(connexionRouteur);
 app.use(deconnexionRouteur);
 app.use(deconnexionRouteur);
 app.use(groupesRouteur);
+app.use(erreurRouteur);
 
 
 app.get('/', (req, res) => {
