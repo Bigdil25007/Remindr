@@ -206,8 +206,12 @@ td {
     background-color: rgba(120, 174, 192, 0.863);
 }
 
-.Right-section {
+.Left-section{
+    width: 70%;
     flex-direction: column;
+}
+
+.Right-section {
     width: 30%;
     margin-left: 2%;
 }
