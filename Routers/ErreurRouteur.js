@@ -14,7 +14,7 @@ routeur.get('/error/:idError', (req, res) => {
 
         //Connexion
         case '2':
-            res.send('Email incorrect');
+            res.send('Email inconnu');
             break;
 
         case '3':

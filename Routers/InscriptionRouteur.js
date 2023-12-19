@@ -13,7 +13,7 @@ async function findUser(email) {
 }
 
 async function addUser(user) {
-  const createUser = await prisma.users.create({ data: user })
+  return createUser = await prisma.users.create({ data: user })
 }
 
 routeur.get('/inscription', (req, res) => {
@@ -44,15 +44,13 @@ routeur.post('/inscription', async (req, res) => {
       mdp: SHA256(data.mdp).toString()
     }
 
-    //Ajout de l'utilisateur dans la base de données
-    await addUser(profil);
-
-    //Récupération du profil depuis la BdD et stockage en session
-    const user = await findUser(data.email);
+    //Ajout de l'utilisateur dans la base de données et stockage en session
+    const user = await addUser(profil);
     req.session.user = user;
     res.redirect('/dashboard');
 
   } catch (err) {
+    console.log(err);
     res.redirect('/error/X');
   }
 })

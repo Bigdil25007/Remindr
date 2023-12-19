@@ -8,7 +8,7 @@ datasource db {
 }
 
 model users {
-  IDUser     Int          @id @default(autoincrement()) @map("id")
+  IDUser     Int          @id @default(autoincrement())
   mail       String       @unique
   nom        String
   prenom     String
@@ -18,7 +18,7 @@ model users {
 }
 
 model groups {
-  IDGroup    Int          @id @default(autoincrement()) @map("id")
+  IDGroup    Int          @id @default(autoincrement())
   nom        String       @unique
   appartenir appartenir[]
   reminders  reminders[]

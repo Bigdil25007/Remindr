@@ -132,6 +132,7 @@ routeur.get('/groupes/:idGroup', async (req, res) => {
 
     res.render('groupes', data);
   } catch (err) {
+    console.log(err);
     res.redirect('/error/X');
   }
 });
@@ -151,6 +152,7 @@ routeur.post('/groupes/:idGroup', async (req, res) => {
 
     await addMember(userID, parseInt(req.params.idGroup, 10));
   } catch (err) {
+    console.log(err);
     res.redirect('/error/X');
   }
 });

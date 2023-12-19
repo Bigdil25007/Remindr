@@ -38,6 +38,7 @@ routeur.post('/connexion', async (req, res) => {
     res.redirect('/dashboard');
 
   } catch (err) {
+    console.log(err);
     res.redirect('/error/X');
   }
 })

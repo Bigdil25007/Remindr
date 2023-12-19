@@ -138,6 +138,7 @@ routeur.post('/dashboard', async (req, res) => {
     res.redirect('/groupes/' + groupId);
 
   } catch (err) {
+    console.log(err);
     res.redirect('/error/X');
   }
 });
