@@ -7,29 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model appartenir {
-  IDUser  Int    @unique(map: "Appartenir_IDUser_key")
-  IDGroup Int    @unique(map: "Appartenir_IDGroup_key")
-  groups  groups @relation(fields: [IDGroup], references: [IDGroup], map: "Appartenir_IDGroup_fkey")
-  users   users  @relation(fields: [IDUser], references: [IDUser], map: "Appartenir_IDUser_fkey")
-
-  @@id([IDUser, IDGroup])
-}
-
-model finir {
-  IDUser    Int       @unique(map: "Finir_IDUser_key")
-  IDRappel  Int       @unique(map: "Finir_IDRappel_key")
-  Check     Boolean   @default(false)
-  reminders reminders @relation(fields: [IDRappel], references: [IDRappel], map: "Finir_IDRappel_fkey")
-  users     users     @relation(fields: [IDUser], references: [IDUser], map: "Finir_IDUser_fkey")
-
-  @@id([IDUser, IDRappel])
+model users {
+  IDUser     Int          @id @default(autoincrement()) @map("id")
+  mail       String       @unique
+  nom        String
+  prenom     String
+  mdp        String
+  appartenir appartenir[]
+  finir      finir[]
 }
 
 model groups {
-  IDGroup    Int         @id @default(autoincrement())
-  nom        String      @unique(map: "Groups_nom_key")
-  appartenir appartenir?
+  IDGroup    Int          @id @default(autoincrement()) @map("id")
+  nom        String       @unique
+  appartenir appartenir[]
   reminders  reminders[]
 }
 
@@ -40,18 +31,25 @@ model reminders {
   dateCreation DateTime @default(now()) @db.DateTime(0)
   dateFin      DateTime @db.DateTime(0)
   IDGroup      Int
-  finir        finir?
-  groups       groups   @relation(fields: [IDGroup], references: [IDGroup], map: "Reminders_IDGroup_fkey")
-
-  @@index([IDGroup], map: "Reminders_IDGroup_fkey")
+  group        groups   @relation(fields: [IDGroup], references: [IDGroup])
+  finir        finir[]
 }
 
-model users {
-  IDUser     Int         @id @default(autoincrement())
-  mail       String      @unique(map: "Users_mail_key")
-  nom        String
-  prenom     String
-  mdp        String
-  appartenir appartenir?
-  finir      finir?
+model appartenir {
+  IDUser  Int
+  IDGroup Int
+  user    users  @relation(fields: [IDUser], references: [IDUser])
+  group   groups @relation(fields: [IDGroup], references: [IDGroup])
+
+  @@id([IDUser, IDGroup])
+}
+
+model finir {
+  IDUser   Int
+  IDRappel Int
+  Check    Boolean   @default(false)
+  user     users     @relation(fields: [IDUser], references: [IDUser])
+  reminder reminders @relation(fields: [IDRappel], references: [IDRappel])
+
+  @@id([IDUser, IDRappel])
 }
