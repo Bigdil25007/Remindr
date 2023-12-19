@@ -2,7 +2,7 @@ const express = require('express');
 const routeur = express.Router();
 
 routeur.get('/error/:idError', (req, res) => {
-    switch (req.params.error) {
+    switch (req.params.idError) {
         //Inscription
         case '0':
             res.send('Email déja utilisé');
@@ -41,3 +41,5 @@ routeur.get('/error/:idError', (req, res) => {
             break;
     }
 });
+
+module.exports = routeur;

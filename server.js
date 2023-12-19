@@ -15,6 +15,7 @@ const groupesRouteur = require('./Routers/GroupesRouteur');
 const erreurRouteur = require('./Routers/ErreurRouteur');
 
 
+
 app.use(express.static('static'));
 
 //Body-parser pour récupérer les POST
@@ -34,11 +35,9 @@ app.set('views', './views');
 
 //Ajout des modifs sur les routes
 app.use(layout);
-
 app.use(dashboardRouteur);
 app.use(inscriptionRouteur);
 app.use(connexionRouteur);
-app.use(deconnexionRouteur);
 app.use(deconnexionRouteur);
 app.use(groupesRouteur);
 app.use(erreurRouteur);
