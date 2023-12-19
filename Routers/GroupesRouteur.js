@@ -15,7 +15,7 @@ async function findGroup(userId, groupId) {
         },
         {
           appartenir: {
-            is: {
+            some: {
               IDUser: userId,
             },
           },
@@ -37,7 +37,7 @@ async function findMembres(groupId) {
   return membres = await prisma.users.findMany({
     where: {
       appartenir: {
-        is: {
+        some: {
           IDGroup: groupId,
         },
       },
@@ -45,6 +45,39 @@ async function findMembres(groupId) {
   });
 }
 
+async function CheckUserOutsideGroup(email, groupId) {
+  const user = await prisma.users.findUnique({
+    where: {
+      mail: email,
+    },
+  });
+
+  //Utilisateur introuvable
+  if (!user) {
+    res.redirect('/error/4');
+    return;
+  }
+
+  //On va réutiliser findGroup() pour voir si l'utilisateur fait déjà parti du groupe
+  const checkGroup = await findGroup(user.IDUser, groupId);
+
+  if (checkGroup) {
+    res.redirect('/error/5');
+    return;
+  }
+
+  //L'utilisateur existe et n'est pas dans le groupe
+  return user.IDUser;
+}
+
+async function addMember(userId, groupId) {
+  const appartenance = await prisma.appartenir.create({
+    data: {
+      IDUser: userId,
+      IDGroup: groupId,
+    },
+  })
+}
 
 function FormatterTab(tableau) {
   /*
@@ -79,24 +112,49 @@ function FormatterTab(tableau) {
 };
 
 routeur.get('/groupes/:idGroup', async (req, res) => {
-  if (!req.session.user) {
-    res.render('blocked');
+  try {
+    if (!req.session.user) {
+      res.render('blocked');
+      return;
+    }
+
+    const group = await findGroup(req.session.user.IDUser, parseInt(req.params.idGroup, 10));
+
+    //Sécurité si une personne essaye d'accèder à un groupe par l'url
+    if (!group) {
+      res.send("Vous ne faites pas partie de ce groupe !");
+      return;
+    }
+
+    const rappels = await findRappels(group.IDGroup);
+    const data = FormatterTab(rappels);
+    data.membres = await findMembres(group.IDGroup);
+
+    res.render('groupes', data);
+  } catch (err) {
+    console.log(err);
+    res.redirect('/error/X');
+  }
+});
+
+
+routeur.post('/groupes/:idGroup', async (req, res) => {
+  //try {
+  //Ajout d'un utilisateur 
+  const email = req.body.mail;
+
+  //On regarde si la personne existe et si la personne n'est pas deja sur le groupe
+  const userID = await CheckUserOutsideGroup(email, parseInt(req.params.idGroup, 10));
+
+  if (!userID) {
     return;
   }
 
-  const group = await findGroup(req.session.user.IDUser, parseInt(req.params.idGroup, 10));
-
-  //Sécurité si une personne essaye d'accèder à un groupe par l'url
-  if (!group) {
-    res.send("Vous ne faites pas partie de ce groupe !");
-    return;
-  }
-
-  const rappels = await findRappels(group.IDGroup);
-  const data = FormatterTab(rappels);
-  data.membres = await findMembres(group.IDGroup);
-
-  res.render('groupes', data);
+  await addMember(userID, parseInt(req.params.idGroup, 10));
+  /*} catch (err) {
+    console.log(err);
+    res.redirect('/error/X');
+  }*/
 });
 
 module.exports = routeur;

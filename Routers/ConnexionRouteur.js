@@ -16,45 +16,31 @@ routeur.get('/connexion', (req, res) => {
   res.render('Connexion');
 });
 
-routeur.get('/connexion/:error', (req, res) => {
-  switch (req.params.error) {
-    case '0':
-      res.send('Email incorrect');
-      break;
-
-    case '1':
-      res.send('Mot de passe incorrect');
-      break;
-
-    default:
-      res.send("ERROR ! Merci de réessayer s'il vous plaît");
-      break;
-  }
-})
 
 routeur.post('/connexion', async (req, res) => {
-  try {
-    const data = req.body;
-    const user = await findUser(data.email);
+  //try {
+  const data = req.body;
+  const user = await findUser(data.email);
 
-    // Si l'utilisateur n'est pas trouvé
-    if (!user) {
-      res.redirect('/connexion/0'); // Redirige si l'email est incorrect
-      return;
-    }
-
-    // Si le mot de passe est incorrect
-    if (user.mdp !== SHA256(data.mdp).toString()) {
-      res.redirect('/connexion/1'); // Redirige si le mot de passe est incorrect
-      return;
-    }
-
-    req.session.user = user;
-    res.redirect('/dashboard');
-
-  } catch (err) {
-    res.redirect('/connexion/3')
+  // Si l'utilisateur n'est pas trouvé => email incorrect
+  if (!user) {
+    res.redirect('/error/2');
+    return;
   }
+
+  // Si le mot de passe est incorrect
+  if (user.mdp !== SHA256(data.mdp).toString()) {
+    res.redirect('/error/3');
+    return;
+  }
+
+  req.session.user = user;
+  res.redirect('/dashboard');
+
+  /*} catch (err) {
+    console.log(err);
+    res.redirect('/error/X');
+  }*/
 })
 
 module.exports = routeur;

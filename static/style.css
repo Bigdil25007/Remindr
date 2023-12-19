@@ -8,7 +8,7 @@ body {
     margin: 0;
 }
 
-.Text-imp{
+.Text-imp {
     font-size: 2em
 }
 
@@ -57,12 +57,13 @@ body {
     padding-top: 5px;
 }
 
-.pair{
+.pair {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
+
 .rappel {
     width: 70%;
 }
@@ -121,33 +122,28 @@ td {
     text-align: center;
 }
 
-.groups-data{
+.groups-data {
     text-decoration: none;
     color: #000000;
 }
 
-.page-group {
-    width: 95%;
-    text-align: center;
-}
-
-.data-dépassés{
+.data-dépassés {
     color: #ff0000;
 }
 
-.titre{
+.titre {
     width: 20%;
 }
 
-.date_echeance{
+.date_echeance {
     width: 20%;
 }
 
-.description{
+.description {
     width: 60%;
 }
 
-.top-box{
+.top-box {
     margin-bottom: 4%;
 }
 
@@ -161,20 +157,20 @@ td {
 .BoutonCreateGroup {
     text-align: center;
     text-decoration: none;
-    background-color: #1ddd4763; 
-    padding: 10px 20px; 
+    background-color: #1ddd4763;
+    padding: 10px 20px;
     border-radius: 5px;
     margin-top: 15px;
     width: 70%;
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: auto;
 }
 
 .BoutonCreateGroup:hover {
-    background-color: #1ddd479d; 
+    background-color: #1ddd479d;
 }
 
-.CreateGroupButton{
+.CreateGroupButton {
     margin-top: 20px;
 }
 
@@ -260,19 +256,18 @@ footer p {
     z-index: 1000;
 }
 
-.navbar-RemindR{
+.navbar-RemindR {
     padding: 0 1%;
     color: #000000;
     text-decoration: none;
     font-size: 1.5em
 }
 
-.nav-link{
+.nav-link {
     color: #000000;
     font-size: 1.2em;
 }
 
-.collapse{
+.collapse {
     margin-right: 1%;
 }
-

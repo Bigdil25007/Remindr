@@ -7,10 +7,18 @@ async function findGroups(userId) {
   return groups = await prisma.groups.findMany({
     where: {
       appartenir: {
-        is: {
+        some: {
           IDUser: userId,
         },
       },
+    },
+  });
+}
+
+async function findGroupByName(nameGroup) {
+  return group = await prisma.groups.findUnique({
+    where: {
+      nom: nameGroup,
     },
   });
 }
@@ -21,6 +29,25 @@ async function findRappels(groupId) {
       IDGroup: groupId,
     },
   });
+}
+
+async function createGroup(nomGroupe) {
+  const groupe = await prisma.groups.create({
+    data: {
+      nom: nomGroupe,
+    },
+  });
+
+  return groupe.IDGroup;
+}
+
+async function addMember(userId, groupId) {
+  const appartenance = await prisma.appartenir.create({
+    data: {
+      IDUser: userId,
+      IDGroup: groupId,
+    },
+  })
 }
 
 function FormatterTab(tableau) {
@@ -57,6 +84,7 @@ function FormatterTab(tableau) {
 
 
 routeur.get('/dashboard', async (req, res) => {
+  //try {
   if (!req.session.user) {
     res.render('blocked');
     return;
@@ -85,6 +113,34 @@ routeur.get('/dashboard', async (req, res) => {
   data.rappelsDepasse = rappelsDepasse;
 
   res.render('home', data);
+  /*} catch (err) {
+    res.redirect('/error/X');
+  }*/
+});
+
+routeur.post('/dashboard', async (req, res) => {
+  //try {
+  //Ajout d'un groupe
+  const nomGroup = req.body.nomGroupe;
+
+  //On regarde si le nom existe déja
+  const group = await findGroupByName(nomGroup);
+
+  if (group) {
+    res.redirect('/error/6');
+    return;
+  }
+
+  //On crée le groupe, on ajoute l'utilisateur et on redirige
+  const groupId = await createGroup(nomGroup);
+  await addMember(req.session.user.IDUser, groupId);
+
+  res.redirect('/groupes/' + groupId);
+
+  /*} catch (err) {
+    console.log(err);
+    res.redirect('/error/X');
+  }*/
 });
 
 

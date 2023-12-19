@@ -12,7 +12,8 @@ const deconnexionRouteur = require('./Routers/DeconnexionRouteur');
 const dashboardRouteur = require('./Routers/DashboardRouter');
 const inscriptionRouteur = require('./Routers/InscriptionRouteur');
 const groupesRouteur = require('./Routers/GroupesRouteur');
-const CreateGroupsRouteur = require('./Routers/CreateGroupsRouteur');
+const erreurRouteur = require('./Routers/ErreurRouteur');
+
 
 
 app.use(express.static('static'));
@@ -34,14 +35,12 @@ app.set('views', './views');
 
 //Ajout des modifs sur les routes
 app.use(layout);
-
 app.use(dashboardRouteur);
 app.use(inscriptionRouteur);
 app.use(connexionRouteur);
 app.use(deconnexionRouteur);
-app.use(deconnexionRouteur);
 app.use(groupesRouteur);
-app.use(CreateGroupsRouteur);
+app.use(erreurRouteur);
 
 
 app.get('/', (req, res) => {
