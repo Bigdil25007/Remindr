@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,49 +7,51 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Users {
-  IDUser     Int         @id @default(autoincrement())
-  mail       String      @unique
-  nom        String
-  prenom     String
-  mdp        String
-  Appartenir Appartenir?
-  Finir      Finir?
-}
-
-model Groups {
-  IDGroup    Int         @id @default(autoincrement())
-  nom        String      @unique
-  Appartenir Appartenir?
-  Reminders  Reminders[]
-}
-
-model Reminders {
-  IDRappel     Int      @id @default(autoincrement())
-  titre        String
-  description  String
-  dateCreation DateTime @db.DateTime
-  dateFin      DateTime @db.DateTime
-  Finir        Finir?
-  IDGroup      Int
-  group        Groups   @relation(fields: [IDGroup], references: [IDGroup])
-}
-
-model Appartenir {
-  IDUser  Int    @unique
-  IDGroup Int    @unique
-  user    Users  @relation(fields: [IDUser], references: [IDUser])
-  group   Groups @relation(fields: [IDGroup], references: [IDGroup])
+model appartenir {
+  IDUser  Int    @unique(map: "Appartenir_IDUser_key")
+  IDGroup Int    @unique(map: "Appartenir_IDGroup_key")
+  groups  groups @relation(fields: [IDGroup], references: [IDGroup], map: "Appartenir_IDGroup_fkey")
+  users   users  @relation(fields: [IDUser], references: [IDUser], map: "Appartenir_IDUser_fkey")
 
   @@id([IDUser, IDGroup])
 }
 
-model Finir {
-  IDUser   Int       @unique
-  IDRappel Int       @unique
-  Check    Boolean   @default(false)
-  user     Users     @relation(fields: [IDUser], references: [IDUser])
-  reminder Reminders @relation(fields: [IDRappel], references: [IDRappel])
+model finir {
+  IDUser    Int       @unique(map: "Finir_IDUser_key")
+  IDRappel  Int       @unique(map: "Finir_IDRappel_key")
+  Check     Boolean   @default(false)
+  reminders reminders @relation(fields: [IDRappel], references: [IDRappel], map: "Finir_IDRappel_fkey")
+  users     users     @relation(fields: [IDUser], references: [IDUser], map: "Finir_IDUser_fkey")
 
   @@id([IDUser, IDRappel])
+}
+
+model groups {
+  IDGroup    Int         @id @default(autoincrement())
+  nom        String      @unique(map: "Groups_nom_key")
+  appartenir appartenir?
+  reminders  reminders[]
+}
+
+model reminders {
+  IDRappel     Int      @id @default(autoincrement())
+  titre        String
+  description  String
+  dateCreation DateTime @default(now()) @db.DateTime(0)
+  dateFin      DateTime @db.DateTime(0)
+  IDGroup      Int
+  finir        finir?
+  groups       groups   @relation(fields: [IDGroup], references: [IDGroup], map: "Reminders_IDGroup_fkey")
+
+  @@index([IDGroup], map: "Reminders_IDGroup_fkey")
+}
+
+model users {
+  IDUser     Int         @id @default(autoincrement())
+  mail       String      @unique(map: "Users_mail_key")
+  nom        String
+  prenom     String
+  mdp        String
+  appartenir appartenir?
+  finir      finir?
 }

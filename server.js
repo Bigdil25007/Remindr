@@ -15,7 +15,6 @@ const groupesRouteur = require('./Routers/GroupesRouteur');
 const erreurRouteur = require('./Routers/ErreurRouteur');
 
 
-
 app.use(express.static('static'));
 
 //Body-parser pour récupérer les POST
