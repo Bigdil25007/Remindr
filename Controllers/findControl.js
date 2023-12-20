@@ -62,22 +62,19 @@ async function IsUserFromGroup(userId, groupId) {
     /*
     On regarde si on trouve le groupe qui correspond à l'ID de groupe et qui contient l'id de l'user
     */
-    return group = await prisma.groups.findMany({
+    const appartenance = await prisma.appartenir.findUnique({
         where: {
-            AND: [
-                {
-                    IDGroup: groupId,
-                },
-                {
-                    appartenir: {
-                        some: {
-                            IDUser: userId,
-                        },
-                    },
-                },
-            ],
+            IDUser_IDGroup: {
+                IDUser: userId,
+                IDGroup: groupId
+            }
         },
     });
+
+    if (appartenance)
+        return true;
+    else
+        return false;
 }
 
 

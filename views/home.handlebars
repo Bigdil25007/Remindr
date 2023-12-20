@@ -45,8 +45,8 @@
           <th>Date</th>
           <th>Groupe référence</th>
         </tr>
-        {{#each rappels}}
-        <tr>
+        {{#each rappelsAfaire}}
+        <tr style="background-color: {{this.couleur}}">
           <td>{{this.titre}}</td>
           <td>{{this.date}}</td>
           <td>{{this.description}}</td>
