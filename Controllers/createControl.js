@@ -24,8 +24,13 @@ async function addUser(user) {
     return createUser = await prisma.users.create({ data: user })
 }
 
+async function addRappel(rappel) {
+    return createRappel = await prisma.reminders.create({ data: rappel })
+}
+
 module.exports = {
     createGroup,
     addMember,
-    addUser
+    addUser,
+    addRappel
 };

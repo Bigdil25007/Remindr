@@ -38,6 +38,14 @@ async function findRappelsFromGroup(groupId) {
     });
 }
 
+async function findRappel(rappelId) {
+    return rappels = await prisma.reminders.findUnique({
+        where: {
+            IDRappel: rappelId,
+        },
+    });
+}
+
 async function findMembres(groupId) {
     return membres = await prisma.users.findMany({
         where: {
@@ -79,5 +87,6 @@ module.exports = {
     findMembres,
     findRappelsFromGroup,
     findUserWithEmail,
-    IsUserFromGroup
+    IsUserFromGroup,
+    findRappel
 };
