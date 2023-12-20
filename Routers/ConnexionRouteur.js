@@ -1,16 +1,7 @@
-const { PrismaClient, Prisma } = require('@prisma/client');
 const express = require('express');
 const SHA256 = require("crypto-js/sha256");
 const routeur = express.Router();
-const prisma = new PrismaClient();
-
-async function findUser(email) {
-  return user = await prisma.users.findUnique({
-    where: {
-      mail: email,
-    },
-  })
-}
+const { findUserWithEmail } = require('../Controllers/findControl');
 
 routeur.get('/connexion', (req, res) => {
   res.render('Connexion');
@@ -20,7 +11,7 @@ routeur.get('/connexion', (req, res) => {
 routeur.post('/connexion', async (req, res) => {
   //try {
   const data = req.body;
-  const user = await findUser(data.email);
+  const user = await findUserWithEmail(data.email);
 
   // Si l'utilisateur n'est pas trouvé => email incorrect
   if (!user) {
@@ -38,7 +29,6 @@ routeur.post('/connexion', async (req, res) => {
   res.redirect('/dashboard');
 
   /*} catch (err) {
-    console.log(err);
     res.redirect('/error/X');
   }*/
 })

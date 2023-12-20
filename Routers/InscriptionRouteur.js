@@ -1,20 +1,9 @@
 const express = require('express');
-const { PrismaClient, Prisma } = require('@prisma/client')
-const prisma = new PrismaClient()
 const SHA256 = require("crypto-js/sha256");
 const routeur = express.Router();
+const { findUserWithEmail } = require('../Controllers/findControl');
+const { addUser } = require('../Controllers/createControl');
 
-async function findUser(email) {
-  return user = await prisma.users.findUnique({
-    where: {
-      mail: email,
-    },
-  })
-}
-
-async function addUser(user) {
-  return createUser = await prisma.users.create({ data: user })
-}
 
 routeur.get('/inscription', (req, res) => {
   res.render('Inscription');
@@ -23,7 +12,7 @@ routeur.get('/inscription', (req, res) => {
 routeur.post('/inscription', async (req, res) => {
   //try {
   const data = req.body;
-  const test = await findUser(data.email);
+  const test = await findUserWithEmail(data.email);
 
   // S'il existe déjà un utilisateur avec le même email
   if (test) {
@@ -50,7 +39,6 @@ routeur.post('/inscription', async (req, res) => {
   res.redirect('/dashboard');
 
   /*} catch (err) {
-    console.log(err);
     res.redirect('/error/X');
   }*/
 })

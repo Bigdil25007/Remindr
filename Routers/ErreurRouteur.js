@@ -35,6 +35,11 @@ routeur.get('/error/:idError', (req, res) => {
             res.send("Ce nom de groupe existe déja");
             break;
 
+        //Accès à un groupe non autorisé (en cas d'accès par l'url)
+        case '7':
+            res.send("Vous n'avez pas accès à ce groupe");
+            break;
+
         //Erreurs non gérés
         default:
             res.send("ERROR ! Merci de réessayer s'il vous plaît");

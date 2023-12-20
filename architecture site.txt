@@ -57,7 +57,7 @@ supprimer et modifier rappels (back et front) (modifier est plus un détail : a 
 
 colonne à droite pour ajouter un utlisateur et en dessous liste d'utilisateur
 
-
+faire une page pour afficher les erreurs (simplement créer un view qui affichera le message d'erreur en rouge)
 
 difference par couleur : 
  ajouter un menu deroulant dans le formulaire de creation
