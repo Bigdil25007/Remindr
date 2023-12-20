@@ -7,6 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Couleur {
+  red
+  green
+  blue
+  aqua
+  orange
+  brown
+  grey
+  violet
+}
+
 model users {
   IDUser     Int          @id @default(autoincrement())
   mail       String       @unique
@@ -33,6 +44,7 @@ model reminders {
   IDGroup      Int
   group        groups   @relation(fields: [IDGroup], references: [IDGroup])
   finir        finir[]
+  couleur      Couleur
 }
 
 model appartenir {

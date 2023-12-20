@@ -27,6 +27,7 @@ CREATE TABLE `reminders` (
     `dateCreation` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
     `dateFin` DATETIME(0) NOT NULL,
     `IDGroup` INTEGER NOT NULL,
+    `couleur` ENUM('red', 'green', 'blue', 'aqua', 'orange', 'brown', 'grey', 'violet') NOT NULL,
 
     PRIMARY KEY (`IDRappel`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
