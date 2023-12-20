@@ -135,7 +135,11 @@ td {
 }
 
 .data-dépassés {
-    color: #ff0000;
+    color: #ff0000d2
+}
+
+.Rappels_depasses{
+    background-color: #ff0000c7;
 }
 
 .titre {
@@ -189,9 +193,7 @@ td {
     background-color: #f0f0f0;
 }
 
-.Rappels_depasses{
-    background-color: #ff0000c9;
-}
+
 
 .BoutonCreateUser {
     text-align: center;
@@ -236,6 +238,22 @@ td {
 
 .SeparateButtonAddUserAndRappel{
     width: 70%;
+}
+
+
+/*Style des erreurs*/
+.erreurs {
+    color: #D8000C; 
+    background-color: #FFD2D2; 
+    padding: 20px; 
+    margin: 30px auto; 
+    width: auto; 
+    text-align: center; 
+    border-radius: 10px; 
+    border: 1px solid #D8000C; 
+    box-shadow: 0 0 10px rgba(216, 0, 12, 0.5); 
+    font-size: 1.5em; 
+    box-sizing: border-box; 
 }
 
 
