@@ -1,50 +1,24 @@
 const express = require('express');
 const routeur = express.Router();
 
+// Les messages d'erreur sont stockés dans un objet
+const errorMessages = {
+    '0': 'Email déjà utilisé',
+    '1': 'Confirmation du mot de passe incorrect',
+    '2': 'Email inconnu',
+    '3': 'Mot de passe incorrect',
+    '4': "L'utilisateur n'existe pas",
+    '5': "L'utilisateur fait déjà partie du groupe",
+    '6': "Ce nom de groupe existe déjà",
+    '7': "Vous n'avez pas accès à ce groupe"
+};
+
 routeur.get('/error/:idError', (req, res) => {
-    switch (req.params.idError) {
-        //Inscription
-        case '0':
-            res.send('Email déja utilisé');
-            break;
+    // Obtenez le message d'erreur à partir de l'objet errorMessages en utilisant l'idError, ou un message par défaut
+    const errorMessage = errorMessages[req.params.idError] || "Erreur non spécifiée. Merci de réessayer s'il vous plaît.";
 
-        case '1':
-            res.send('Confirmation du mot de passe incorrect');
-            break;
-
-        //Connexion
-        case '2':
-            res.send('Email inconnu');
-            break;
-
-        case '3':
-            res.send('Mot de passe incorrect');
-            break;
-
-        //Ajout d'un utilisateur dans un groupe
-        case '4':
-            res.send("L'utilisateur n'existe pas");
-            break;
-
-        case '5':
-            res.send("L'utilisateur fait déjà parti du groupe");
-            break;
-
-        //Création d'un groupe
-        case '6':
-            res.send("Ce nom de groupe existe déja");
-            break;
-
-        //Accès à un groupe non autorisé (en cas d'accès par l'url)
-        case '7':
-            res.send("Vous n'avez pas accès à ce groupe");
-            break;
-
-        //Erreurs non gérés
-        default:
-            res.send("ERROR ! Merci de réessayer s'il vous plaît");
-            break;
-    }
+    // Envoyez le message d'erreur au template erreur.handlebars
+    res.render('erreurs', { message: errorMessage });
 });
 
 module.exports = routeur;
