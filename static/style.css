@@ -32,7 +32,7 @@ body {
     padding: 15px 0px;
     font-size: 20px;
     border-radius: 25px;
-    width: 42%;
+    width: 40%;
 }
 
 .btn-success {
@@ -163,9 +163,9 @@ td {
 }
 
 .BoutonCreateGroup {
-    text-align: center;
     text-decoration: none;
     background-color: #1ddd4763;
+    color: #000000;
     padding: 10px 20px;
     border-radius: 5px;
     margin-top: 15px;
@@ -174,17 +174,39 @@ td {
     margin-right: auto;
 }
 
+.BoutonCreateRappel{
+    text-decoration: none;
+    background-color: rgb(152, 210, 230);
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 15px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.BoutonCreateUser {
+    text-align: center;
+    text-decoration: none;
+    background-color: lightblue; 
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 100%;
+}
+
 .BoutonCreateGroup:hover {
     background-color: #1ddd479d;
 }
 
-.CreateGroupButton {
+.BoutonCreateRappel:hover, .BoutonCreateUser:hover {
+    background-color: rgba(120, 174, 192, 0.863);
+}
+
+.CreateGroupButton, .CreateUserButton {
     margin-top: 20px;
 }
 
-.CreateUserButton{
-    margin-top: 20px;
-}
 
 .form-user-container{
     padding: 30px;
@@ -193,20 +215,6 @@ td {
     background-color: #f0f0f0;
 }
 
-
-
-.BoutonCreateUser {
-    text-align: center;
-    text-decoration: none;
-    background-color: lightblue; /* Choisissez une couleur différente si nécessaire */
-    padding: 10px 20px;
-    border-radius: 5px;
-    width: 100%;
-}
-
-.BoutonCreateUser:hover {
-    background-color: rgba(120, 174, 192, 0.863);
-}
 
 .Left-section{
     width: 70%;
@@ -239,6 +247,44 @@ td {
 .SeparateButtonAddUserAndRappel{
     width: 70%;
 }
+
+.form-add-reminder{
+    margin-top: 20px;
+}
+
+.add-rappel-container{
+    width: 55%;
+}
+
+.btn-add-reminder{
+    margin-left: 60%;
+    width: 100%;
+}
+
+/*Pour couleur formulaire rappel*/
+#colorPicker {
+    display: flex;
+    gap: 17px; 
+    margin-top: 10px;
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+  .color-block {
+    width: 40px; 
+    height: 40px; 
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid transparent; 
+    transition: transform 0.3s ease;
+  }
+  
+  .color-block:hover, .color-block.selected {
+    transform: scale(1.1);
+    border-color: #000; 
+  }
 
 
 /*Style des erreurs*/

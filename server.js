@@ -13,6 +13,7 @@ const dashboardRouteur = require('./Routers/DashboardRouter');
 const inscriptionRouteur = require('./Routers/InscriptionRouteur');
 const groupesRouteur = require('./Routers/GroupesRouteur');
 const erreurRouteur = require('./Routers/ErreurRouteur');
+const rappelRouteur = require('./Routers/RappelRouteur');
 
 
 
@@ -41,6 +42,7 @@ app.use(connexionRouteur);
 app.use(deconnexionRouteur);
 app.use(groupesRouteur);
 app.use(erreurRouteur);
+app.use(rappelRouteur);
 
 
 app.get('/', (req, res) => {
