@@ -61,6 +61,5 @@ colonne à droite pour ajouter un utlisateur et en dessous liste d'utilisateur
 
 difference par couleur : 
  ajouter un menu deroulant dans le formulaire de creation
-ajouter une proiété couleur (type enum)
 
 definir depuis les balise html color= this.couleur
