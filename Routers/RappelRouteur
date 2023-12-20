@@ -5,9 +5,21 @@ const { addRappel } = require('../Controllers/createControl');
 const { findRappel } = require('../Controllers/findControl');
 const { updateRappel } = require('../Controllers/updateControl');
 
+const Couleur = [
+    'red',
+    'green',
+    'blue',
+    'aqua',
+    'orange',
+    'brown',
+    'grey',
+    'violet'
+]
+
+
 //Création Rappel
 routeur.get('/rappel/:idGroup', CheckAppartenance, async (req, res, next) => {
-    res.render('rappel');
+    res.render('rappel', { Couleur });
 })
 
 routeur.post('/rappel/:idGroup', async (req, res) => {
@@ -31,7 +43,7 @@ routeur.post('/rappel/:idGroup', async (req, res) => {
 routeur.get('/rappel/:idGroup/:idRappel', CheckAppartenance, async (req, res, next) => {
     //Récupération des données du rappel
     const rappel = await findRappel(parseInt(req.params.idRappel, 10));
-    res.render('rappel', rappel);
+    res.render('rappel', { rappel, Couleur });
 })
 
 routeur.post('/rappel/:idGroup/:idRappel', async (req, res) => {
