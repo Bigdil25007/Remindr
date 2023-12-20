@@ -14,8 +14,12 @@ async function createGroup(nomGroupe) {
 async function addMember(userId, groupId) {
     const appartenance = await prisma.appartenir.create({
         data: {
-            IDUser: userId,
-            IDGroup: groupId,
+            user: {
+                connect: { IDUser: userId }
+            },
+            group: {
+                connect: { IDGroup: groupId }
+            }
         },
     })
 }

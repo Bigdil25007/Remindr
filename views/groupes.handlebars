@@ -41,19 +41,19 @@
       </table>
     </div>
   </div>
-  
+
 
   <div class="Right-section">
     <button type="button" class="BoutonCreateUser" onclick="toggleUserForm()">Ajouter un utilisateur</button>
     <form method="post" class="form-user-container CreateUserButton" id="createUserForm" style="display: none;">
-        <h2 class="mb-4">Formulaire d'ajout d'utilisateur</h2>
-        <div class="mb-3">
-            <label class="form-label">Email utilisateur</label>
-            <input type="email" class="form-control" id="emailUtilisateur" name="emailUtilisateur" required>
-        </div>
-        <div class="bouton">
-            <button type="submit" class="btn btn-primary btn-submit">Ajouter</button>
-        </div>
+      <h2 class="mb-4">Formulaire d'ajout d'utilisateur</h2>
+      <div class="mb-3">
+        <label class="form-label">Email utilisateur</label>
+        <input type="email" class="form-control" id="emailUtilisateur" name="emailUtilisateur" required>
+      </div>
+      <div class="bouton">
+        <button type="submit" class="btn btn-primary btn-submit">Ajouter</button>
+      </div>
     </form>
 
     <div class="user-list-section">
@@ -62,15 +62,11 @@
         <div class="table-wrapper">
           <table id="userListTable">
             <tbody id="userList">
-              <!-- Les lignes du tableau sont ajoutées ici -->
-              <tr><td>user1@example.com</td></tr>
-              <tr><td>user2@example.com</td></tr>
-              <tr><td>user3@example.com</td></tr>
-              <tr><td>user4@example.com</td></tr>
-              <tr><td>user5@example.com</td></tr>
-              <!-- Supposons que vous avez plus de cinq utilisateurs -->
-              <tr><td>user6@example.com</td></tr>
-              <tr><td>user7@example.com</td></tr>
+              {{#each membres}}
+              <tr>
+                <td>{{this.mail}}</td>
+              </tr>
+              {{/each}}
             </tbody>
           </table>
         </div>
@@ -80,12 +76,12 @@
 
   <script>
     function toggleUserForm() {
-        var form = document.getElementById("createUserForm");
-        if (form.style.display === "none") {
-            form.style.display = "block";
-        } else {
-            form.style.display = "none";
-        }
+      var form = document.getElementById("createUserForm");
+      if (form.style.display === "none") {
+        form.style.display = "block";
+      } else {
+        form.style.display = "none";
+      }
     }
   </script>
 </div>
