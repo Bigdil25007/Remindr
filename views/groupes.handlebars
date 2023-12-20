@@ -12,7 +12,7 @@
           <th class="description">Description</th>
         </tr>
         {{#each rappelsAfaire}}
-        <tr class="space">
+        <tr class="space" style="background-color: {{this.couleur}}">
           <td>{{this.titre}}</td>
           <td>{{this.dateFin}}</td>
           <td>{{this.description}}</td>
@@ -32,7 +32,7 @@
           <th class="description">Description</th>
         </tr>
         {{#each rappelsDepasse}}
-        <tr class="data-dépassés">
+        <tr class="data-dépassés" style="background-color: {{this.couleur}}">
           <td>{{this.titre}}</td>
           <td>{{this.dateFin}}</td>
           <td>{{this.description}}</td>
