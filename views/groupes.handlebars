@@ -16,14 +16,20 @@
         </tr>
         {{#each rappelsAfaire}}
         <tr class="space">
-          <td class="ButtonCochable"><input type="checkbox" id="tache1" name="tache1"></td>
+          {{#if fait}}
+          <td class="ButtonCochable"><a class="td ButtonFinirRappel"
+              href="/finir/{{this.IDGroup}}/{{this.IDRappel}}/0">Annuler</a></td>
+          {{else}}
+          <td class="ButtonCochable"><a class="td ButtonFinirRappel"
+              href="/finir/{{this.IDGroup}}/{{this.IDRappel}}/1">Finir</a></td>
+          {{/if}}
           <td class="td" style="background-color: {{this.couleur}}">{{this.titre}}</td>
           <td class="td" style="background-color: {{this.couleur}}">{{this.dateCreation}}</td>
           <td class="td" style="background-color: {{this.couleur}}">{{this.dateFin}}</td>
           <td class="td" style="background-color: {{this.couleur}}">{{this.description}}</td>
           <td class="td" style="background-color: {{this.couleur}}">
             {{#each checkNom}}
-            {{this.nom}}
+            {{this.prenom}} {{this.nom}}<br>
             {{/each}}
           </td>
           <td class="td ButtonUpdateAndSupprRappel">
@@ -50,6 +56,7 @@
           <th class="th date_debut">Date de création</th>
           <th class="th date_echeance">Date d'échéance</th>
           <th class="th description">Description</th>
+          <th class="th UserFinishTask">Tache achevé Utilisateur</th>
         </tr>
         {{#each rappelsDepasse}}
         <tr class="data-dépassés" style="background-color: {{this.couleur}}">
@@ -57,6 +64,11 @@
           <td class="td">{{this.dateCreation}}</td>
           <td class="td">{{this.dateFin}}</td>
           <td class="td">{{this.description}}</td>
+          <td class="td" style="background-color: {{this.couleur}}">
+            {{#each checkNom}}
+            {{this.prenom}} {{this.nom}}<br>
+            {{/each}}
+          </td>
         </tr>
         {{/each}}
       </table>

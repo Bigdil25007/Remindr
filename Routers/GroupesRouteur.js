@@ -17,7 +17,8 @@ routeur.get('/groupes/:idGroup', CheckAppartenance, async (req, res, next) => {
     dateFin: new Date(),
     IDGroup: null,
     couleur: null,
-    checkNom: []
+    checkNom: [], //liste les personnes ayant fini la tâche
+    fait: null  //permet de savoir si l'utilisateur a déjà fini la tâche
   }
 
   //On stocke les données de base des rappels
@@ -26,6 +27,7 @@ routeur.get('/groupes/:idGroup', CheckAppartenance, async (req, res, next) => {
   //On stocke en plus la liste des membres ayant fini la tâche
   for (let ind = 0; ind < rappels.length; ind++) {
     rappels[ind].checkNom = await findFinishPerson(rappels[ind].IDRappel);
+    rappels[ind].fait = rappels[ind].checkNom.some(person => person.prenom === req.session.user.prenom);
   }
 
   const { rappelsAfaire, rappelsDepasse } = FormaterTab(rappels);

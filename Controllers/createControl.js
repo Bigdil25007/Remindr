@@ -32,9 +32,20 @@ async function addRappel(rappel) {
     return createRappel = await prisma.reminders.create({ data: rappel })
 }
 
+async function addFini(rappelId, userId) {
+    return createFini = await prisma.finir.create({
+        data: {
+            IDUser: userId,
+            IDRappel: rappelId,
+            Check: true
+        }
+    })
+}
+
 module.exports = {
     createGroup,
     addMember,
     addUser,
-    addRappel
+    addRappel,
+    addFini
 };

@@ -10,4 +10,18 @@ async function RemoveReminder(rappelId) {
     });
 }
 
-module.exports = { RemoveReminder };
+async function removeFini(rappelId, userId) {
+    return deletedFini = await prisma.finir.delete({
+        where: {
+            IDUser_IDRappel: {
+                IDUser: userId,
+                IDRappel: rappelId
+            }
+        }
+    });
+}
+
+module.exports = {
+    RemoveReminder,
+    removeFini
+};

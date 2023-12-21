@@ -255,6 +255,13 @@ table {
     color: #f0f0f0;
 }
 
+.ButtonFinirRappel {
+    margin-top: 15px;
+    background-color: #20f703c5;
+    color: black;
+
+}
+
 .BoutonCreateGroup:hover {
     background-color: #1ddd479d;
 }
