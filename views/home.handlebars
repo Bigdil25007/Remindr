@@ -6,13 +6,13 @@
     <div class="table-container">
       <table>
         <tr>
-          <th>GroupeID</th>
-          <th>Nom</th>
+          <th class="th">GroupeID</th>
+          <th class="th">Nom</th>
         </tr>
         {{#each groups}}
         <tr>
-          <td>{{this.IDGroup}}</td>
-          <td>
+          <td class="td">{{this.IDGroup}}</td>
+          <td class="td">
             <a class="groups-data" href="/groupes/{{this.IDGroup}}">{{this.nom}}</a>
           </td>
         </tr>
@@ -41,15 +41,15 @@
     <div class="table-container">
       <table>
         <tr>
-          <th>Titre</th>
-          <th>Date</th>
-          <th>Groupe référence</th>
+          <th class="th">Titre</th>
+          <th class="th">Date</th>
+          <th class="th">Groupe référence</th>
         </tr>
         {{#each rappelsAfaire}}
         <tr style="background-color: {{this.couleur}}">
-          <td>{{this.titre}}</td>
-          <td>{{this.dateFin}}</td>
-          <td>
+          <td class="td">{{this.titre}}</td>
+          <td class="td">{{this.dateFin}}</td>
+          <td class="td">
             <a class="groups-data" href="/groupes/{{this.IDGroup}}">{{this.nomGroup}}</a>
           </td>
         </tr>

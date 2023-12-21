@@ -6,17 +6,34 @@
     <div class="table-container top-box">
       <table>
         <tr>
-          <th class="titre">Titre</th>
-          <th class="date_debut">Date de création</th>
-          <th class="date_echeance">Date d'échéance</th>
-          <th class="description">Description</th>
+          <th class="th-empty emptyFirst"></th>
+          <th class="th titre">Titre</th>
+          <th class="th date_debut">Date de création</th>
+          <th class="th date_echeance">Date d'échéance</th>
+          <th class="th description">Description</th>
+          <th class="th UserFinishTask">Tache achevé Utilisateur</th>
+          <th class="th action">Action</th>
         </tr>
         {{#each rappelsAfaire}}
         <tr class="space" style="background-color: {{this.couleur}}">
-          <td>{{this.titre}}</td>
-          <td>{{this.dateCreation}}</td>
-          <td>{{this.dateFin}}</td>
-          <td>{{this.description}}</td>
+          <td class="ButtonCochable"><input type="checkbox" id="tache1" name="tache1"></td>
+          <td class="td ">{{this.titre}}</td>
+          <td class="td ">{{this.dateCreation}}</td>
+          <td class="td ">{{this.dateFin}}</td>
+          <td class="td ">{{this.description}}</td>
+          <td class="td ">
+            {{#each checkNom}}
+            {{this.nom}}
+            {{/each}}
+          </td>
+          <td class="td ButtonUpdateAndSupprRappel">
+            <a class="td ButtonUpdateRappel" href="/rappel/{{this.IDGroup}}/{{this.IDRappel}}"
+              class="BoutonUpdateRappel">Modifier un
+              rappel !</a>
+            <a class="td ButtonSupprRappel" href="/suppression/{{this.IDGroup}}/{{this.IDRappel}}"
+              class="BoutonUpdateRappel">Supprimer un
+              rappel !</a>
+          </td>
         </tr>
         {{/each}}
       </table>
@@ -28,11 +45,11 @@
     </div>
     <div class="table-container">
       <table>
-        <tr>
-          <th class="titre">Titre</th>
-          <th class="date_debut">Date de création</th>
-          <th class="date_echeance">Date d'échéance</th>
-          <th class="description">Description</th>
+        <tr class="Rappele-depasse-titre-tableau">
+          <th class="th titre">Titre</th>
+          <th class="th date_debut">Date de création</th>
+          <th class="th date_echeance">Date d'échéance</th>
+          <th class="th description">Description</th>
         </tr>
         {{#each rappelsDepasse}}
         <tr class="data-dépassés" style="background-color: {{this.couleur}}">
