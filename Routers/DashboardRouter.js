@@ -1,6 +1,6 @@
 const express = require('express');
 const routeur = express.Router();
-const { findGroupByName, findGroups, findRappelsFromGroup } = require('../Controllers/findControl');
+const { findGroupByName, findGroups, findRappelsFromGroup, findGroupNameById } = require('../Controllers/findControl');
 const { addMember, createGroup } = require('../Controllers/createControl');
 const { FormatterTab } = require('../Controllers/traitementControl');
 
@@ -12,27 +12,28 @@ routeur.get('/dashboard', async (req, res) => {
     return;
   }
 
-  let data = {
-    groups: [],
-    rappelsAfaire: [],
-    rappelsDepasse: []
-  };
+  //Récupération des groupes et des rappels de chaque groupe
+  let groups = await findGroups(req.session.user.IDUser);
 
-  //Récupération des groupes
-  data.groups = await findGroups(req.session.user.IDUser);
-
-  //Récupération des rappels de chaque groupe
   let rappels = [];
 
-  for (group in data.groups) {
+  for (const group of groups) {
     resultat = await findRappelsFromGroup(group.IDGroup);
     rappels.push(resultat);
   }
 
   const { rappelsAfaire, rappelsDepasse } = FormatterTab(rappels.flat());
 
-  data.rappelsAfaire = rappelsAfaire;
-  data.rappelsDepasse = rappelsDepasse;
+  //Récupération du nom de chaque groupe (ajouté au tableau rappelsAfaire)
+  for (let ind = 0; ind < rappelsAfaire.length; ind++) {
+    const groupInfo = await findGroupNameById(rappelsAfaire[ind].IDGroup);
+    rappelsAfaire[ind].nomGroup = groupInfo.nom;
+  }
+
+  let data = {
+    groups: groups,
+    rappelsAfaire: rappelsAfaire
+  };
 
   res.render('home', data);
   /*} catch (err) {

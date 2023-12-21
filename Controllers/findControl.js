@@ -30,6 +30,17 @@ async function findGroupByName(nameGroup) {
     });
 }
 
+async function findGroupNameById(groupId) {
+    return group = await prisma.groups.findUnique({
+        where: {
+            IDGroup: groupId,
+        },
+        select: {
+            nom: true
+        }
+    });
+}
+
 async function findRappelsFromGroup(groupId) {
     return rappels = await prisma.reminders.findMany({
         where: {
@@ -77,6 +88,29 @@ async function IsUserFromGroup(userId, groupId) {
         return false;
 }
 
+async function findFinishPerson(rappelId) {
+    // Rechercher dans la table 'finir' où 'Check' est true et 'IDRappel' correspond au rappelId donné
+    const finishedTasks = await prisma.finir.findMany({
+        where: {
+            IDRappel: rappelId,
+            Check: true
+        },
+        include: {
+            user: {
+                select: {
+                    nom: true,
+                    prenom: true
+                }
+            }
+        }
+    });
+
+    return finishedTasks.map(task => ({
+        nom: task.user.nom,
+        prenom: task.user.prenom
+    }));
+}
+
 
 module.exports = {
     findGroupByName,
@@ -85,5 +119,7 @@ module.exports = {
     findRappelsFromGroup,
     findUserWithEmail,
     IsUserFromGroup,
-    findRappel
+    findRappel,
+    findFinishPerson,
+    findGroupNameById
 };

@@ -30,13 +30,14 @@
       <table>
         <tr>
           <th class="titre">Titre</th>
-          <th class="date_debut">Date_debut</th>
-          <th class="date_echeance">Date_échéance</th>
+          <th class="date_debut">Date de création</th>
+          <th class="date_echeance">Date d'échéance</th>
           <th class="description">Description</th>
         </tr>
         {{#each rappelsDepasse}}
         <tr class="data-dépassés" style="background-color: {{this.couleur}}">
           <td>{{this.titre}}</td>
+          <td>{{this.dateCreation}}</td>
           <td>{{this.dateFin}}</td>
           <td>{{this.description}}</td>
         </tr>

@@ -10,7 +10,7 @@ function FormatterTab(tableau) {
         let dateA = new Date(a.dateFin);
         let dateB = new Date(b.dateFin);
 
-        return dateB - dateA;
+        return dateA - dateB;
     });
 
     /* 
