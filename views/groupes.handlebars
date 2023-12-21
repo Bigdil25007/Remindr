@@ -15,13 +15,13 @@
           <th class="th action">Action</th>
         </tr>
         {{#each rappelsAfaire}}
-        <tr class="space" style="background-color: {{this.couleur}}">
+        <tr class="space">
           <td class="ButtonCochable"><input type="checkbox" id="tache1" name="tache1"></td>
-          <td class="td ">{{this.titre}}</td>
-          <td class="td ">{{this.dateCreation}}</td>
-          <td class="td ">{{this.dateFin}}</td>
-          <td class="td ">{{this.description}}</td>
-          <td class="td ">
+          <td class="td" style="background-color: {{this.couleur}}">{{this.titre}}</td>
+          <td class="td" style="background-color: {{this.couleur}}">{{this.dateCreation}}</td>
+          <td class="td" style="background-color: {{this.couleur}}">{{this.dateFin}}</td>
+          <td class="td" style="background-color: {{this.couleur}}">{{this.description}}</td>
+          <td class="td" style="background-color: {{this.couleur}}">
             {{#each checkNom}}
             {{this.nom}}
             {{/each}}
@@ -53,10 +53,10 @@
         </tr>
         {{#each rappelsDepasse}}
         <tr class="data-dépassés" style="background-color: {{this.couleur}}">
-          <td>{{this.titre}}</td>
-          <td>{{this.dateCreation}}</td>
-          <td>{{this.dateFin}}</td>
-          <td>{{this.description}}</td>
+          <td class="td">{{this.titre}}</td>
+          <td class="td">{{this.dateCreation}}</td>
+          <td class="td">{{this.dateFin}}</td>
+          <td class="td">{{this.description}}</td>
         </tr>
         {{/each}}
       </table>

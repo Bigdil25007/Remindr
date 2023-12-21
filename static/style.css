@@ -3,9 +3,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
+    justify-content: flex-start;
+    padding-top: 70px;
+    padding-bottom: 70px;
 }
 
 .Text-imp {
@@ -84,9 +84,6 @@ body {
     width: 100%;
 }
 
-
-
-
 /*formulaire*/
 .form-container {
     max-width: 550px;
@@ -116,11 +113,27 @@ table {
     width: 100%;
 }
 
-th,
-td {
+.th,
+.td {
     border: 1px solid black;
     padding: 8px;
     text-align: center;
+}
+
+
+
+.td-empty,
+.ButtonCochable,
+.ButtonUpdateRappel {
+    text-align: center;
+}
+
+.ButtonCochable {
+    padding-right: 15px;
+}
+
+.ButtonUpdateRappel {
+    padding-left: 15px;
 }
 
 .groups-data {
@@ -134,29 +147,42 @@ td {
     display: flex;
 }
 
-.data-dépassés {
+.Rappele-depasse-titre-tableau {
     color: #ff0000d2
 }
 
-.Rappels_depasses{
+.Rappels_depasses {
     background-color: #ff0000c7;
 }
 
+.emptyFirst {
+    width: 5%;
+}
+
 .titre {
-    width: 25%;
+    width: 15%;
 }
 
 .date_debut {
-    width: 25%;
+    width: 10%;
 }
 
 .date_echeance {
-    width: 25%;
+    width: 10%;
 }
 
 .description {
     width: 25%;
 }
+
+.UserFinishTask {
+    width: 15%;
+}
+
+.emptyEnd {
+    width: 20%;
+}
+
 
 .top-box {
     margin-bottom: 4%;
@@ -174,7 +200,7 @@ td {
     margin-right: auto;
 }
 
-.BoutonCreateRappel{
+.BoutonCreateRappel {
     text-decoration: none;
     background-color: rgb(152, 210, 230);
     color: #000000;
@@ -189,26 +215,51 @@ td {
 .BoutonCreateUser {
     text-align: center;
     text-decoration: none;
-    background-color: lightblue; 
+    background-color: lightblue;
     padding: 10px 20px;
     border-radius: 5px;
     width: 100%;
+}
+
+.ButtonUpdateRappel,
+.ButtonSupprRappel {
+    text-decoration: none;
+    background-color: rgb(152, 210, 230);
+    color: #000000;
+    padding: 10px 20px;
+    margin: 5px 30px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ButtonUpdateRappel {
+    background-color: #fd6702;
+    color: #f0f0f0;
+}
+
+.ButtonSupprRappel {
+    margin-top: 15px;
+    background-color: #ff000dc5;
+    color: #f0f0f0;
 }
 
 .BoutonCreateGroup:hover {
     background-color: #1ddd479d;
 }
 
-.BoutonCreateRappel:hover, .BoutonCreateUser:hover {
+.BoutonCreateRappel:hover,
+.BoutonCreateUser:hover {
     background-color: rgba(120, 174, 192, 0.863);
 }
 
-.CreateGroupButton, .CreateUserButton {
+.CreateGroupButton,
+.CreateUserButton {
     margin-top: 20px;
 }
 
 
-.form-user-container{
+.form-user-container {
     padding: 30px;
     border: 2px solid #000000;
     border-radius: 10px;
@@ -216,7 +267,7 @@ td {
 }
 
 
-.Left-section{
+.Left-section {
     width: 70%;
     flex-direction: column;
 }
@@ -226,37 +277,38 @@ td {
     margin-left: 2%;
 }
 
-.user-list-box{
+.user-list-box {
     margin-top: 20px;
     width: 100%;
     border-radius: 5px;
 }
 
-#userListTable, #userListTable  tr {
-    display: table; 
-    width: 100%; 
-    table-layout: fixed; 
+#userListTable,
+#userListTable tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
 #userListTable {
-    display: block; 
-    max-height: 250px; 
+    display: block;
+    max-height: 250px;
     overflow-y: auto;
 }
 
-.SeparateButtonAddUserAndRappel{
+.SeparateButtonAddUserAndRappel {
     width: 70%;
 }
 
-.form-add-reminder{
+.form-add-reminder {
     margin-top: 20px;
 }
 
-.add-rappel-container{
+.add-rappel-container {
     width: 55%;
 }
 
-.btn-add-reminder{
+.btn-add-reminder {
     margin-left: 60%;
     width: 100%;
 }
@@ -264,42 +316,42 @@ td {
 /*Pour couleur formulaire rappel*/
 #colorPicker {
     display: flex;
-    gap: 17px; 
+    gap: 17px;
     margin-top: 10px;
-    padding: 10px; 
-    border: 1px solid #ccc; 
-    justify-content: center; 
-    align-items: center; 
-  }
-  
-  .color-block {
-    width: 40px; 
-    height: 40px; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    justify-content: center;
+    align-items: center;
+}
+
+.color-block {
+    width: 40px;
+    height: 40px;
     border-radius: 5px;
     cursor: pointer;
-    border: 2px solid transparent; 
+    border: 2px solid transparent;
     transition: transform 0.3s ease;
-  }
-  
-  .color-block:hover, .color-block.selected {
+}
+
+.color-block:hover,
+.color-block.selected {
     transform: scale(1.1);
-    border-color: #000; 
-  }
+    border-color: #000;
+}
 
 
 /*Style des erreurs*/
 .erreurs {
-    color: #D8000C; 
-    background-color: #FFD2D2; 
-    padding: 20px; 
-    margin: 30px auto; 
-    width: auto; 
-    text-align: center; 
-    border-radius: 10px; 
-    border: 1px solid #D8000C; 
-    box-shadow: 0 0 10px rgba(216, 0, 12, 0.5); 
-    font-size: 1.5em; 
-    box-sizing: border-box; 
+    color: #D8000C;
+    background-color: #FFD2D2;
+    padding: 20px;
+    margin: 30px auto;
+    width: auto;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #D8000C;
+    box-shadow: 0 0 10px rgba(216, 0, 12, 0.5);
+    font-size: 1.5em;
 }
 
 
@@ -324,6 +376,7 @@ footer p {
     width: 100%;
     background-color: #dbdbdb;
     z-index: 1000;
+    margin-bottom: 15px;
 }
 
 .navbar-RemindR {

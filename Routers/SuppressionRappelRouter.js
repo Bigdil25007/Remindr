@@ -4,7 +4,7 @@ const { CheckAppartenance } = require('../Middleware/appartenanceMiddle');
 const { RemoveReminder } = require('../Controllers/removeControl');
 
 routeur.get('/suppression/:idGroup/:idRappel', CheckAppartenance, (req, res, next) => {
-    res.render('suppression');
+    res.render('supprimer');
 });
 
 routeur.post('/suppression/:idGroup/:idRappel/:choix', CheckAppartenance, async (req, res, next) => {
