@@ -12,7 +12,8 @@ routeur.get('/groupes/:idGroup', CheckAppartenance, async (req, res, next) => {
   const data = {
     rappelsAfaire: [],
     rappelsDepasse: [],
-    membres: []
+    membres: [],
+    IdGroup: idGroup
   }
 
   const { rappelsAfaire, rappelsDepasse } = FormatterTab(rappels);
