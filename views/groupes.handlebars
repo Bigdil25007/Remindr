@@ -7,19 +7,20 @@
       <table>
         <tr>
           <th class="titre">Titre</th>
-          <th class="date_debut">Date_debut</th>
-          <th class="date_echeance">Date_échéance</th>
+          <th class="date_debut">Date de création</th>
+          <th class="date_echeance">Date d'échéance</th>
           <th class="description">Description</th>
         </tr>
         {{#each rappelsAfaire}}
         <tr class="space" style="background-color: {{this.couleur}}">
           <td>{{this.titre}}</td>
+          <td>{{this.dateCreation}}</td>
           <td>{{this.dateFin}}</td>
           <td>{{this.description}}</td>
         </tr>
         {{/each}}
       </table>
-            <a href="/rappel/{{this.IdGroup}}" class="BoutonCreateRappel">Créer un rappel !</a>
+      <a href="/rappel/{{this.IdGroup}}" class="BoutonCreateRappel">Créer un rappel !</a>
 
     </div>
     <div class="box rappel-box Rappels_depasses">

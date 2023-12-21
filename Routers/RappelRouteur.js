@@ -19,7 +19,8 @@ const Couleur = [
 
 //Création Rappel
 routeur.get('/rappel/:idGroup', CheckAppartenance, async (req, res, next) => {
-    res.render('rappel', { Couleur });
+    const idGroup = parseInt(req.params.idGroup, 10);
+    res.render('rappel', { Couleur, idGroup });
 })
 
 routeur.post('/rappel/:idGroup', async (req, res) => {
@@ -29,7 +30,7 @@ routeur.post('/rappel/:idGroup', async (req, res) => {
     let rappel = {
         titre: data.titre,
         description: data.description,
-        dateFin: data.dateFin,
+        dateFin: new Date(data.dateFin),
         IDGroup: idGroup,
         couleur: data.couleur
     }
@@ -43,7 +44,8 @@ routeur.post('/rappel/:idGroup', async (req, res) => {
 routeur.get('/rappel/:idGroup/:idRappel', CheckAppartenance, async (req, res, next) => {
     //Récupération des données du rappel
     const rappel = await findRappel(parseInt(req.params.idRappel, 10));
-    res.render('rappel', { rappel, Couleur });
+    const idGroup = parseInt(req.params.idGroup, 10);
+    res.render('rappel', { rappel, Couleur, idGroup });
 })
 
 routeur.post('/rappel/:idGroup/:idRappel', async (req, res) => {

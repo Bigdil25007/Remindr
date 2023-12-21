@@ -1,31 +1,31 @@
-<form action="/rappel/{{idGroup}}" method="post" class="form-container add-rappel-container">
+<form action="/rappel/{{idGroup}}/{{rappel.IDRappel}}" method="post" class="form-container add-rappel-container">
   <div class="form-group">
     <label for="titre">Titre</label>
-    <input type="text" id="titre" name="titre" required class="form-control">
+    <input type="text" id="titre" name="titre" required class="form-control" value="{{rappel.titre}}">
   </div>
-  
+
   <div class="form-group form-add-reminder">
     <label for="description">Description</label>
     <textarea id="description" name="description" required class="form-control"></textarea>
   </div>
-  
+
   <div class="form-group form-add-reminder">
     <label for="dateFin">Date de fin</label>
     <input type="date" id="dateFin" name="dateFin" required class="form-control">
   </div>
-  
+
   <div class="form-group form-add-reminder">
     <label for="couleur">Couleur</label>
     <div id="colorPicker">
       {{#each Couleur}}
-        <div class="color-container">
-          <div class="color-block" style="background-color: {{this}};" data-color="{{this}}"></div>
-        </div>
+      <div class="color-container">
+        <div class="color-block" style="background-color: {{this}};" data-color="{{this}}"></div>
+      </div>
       {{/each}}
     </div>
     <input type="hidden" id="couleur" name="couleur">
   </div>
-  
+
   <div class="btn-add-reminder form-add-reminder">
     <button type="submit" class="btn btn-primary btn-submit btn-valider">Valider</button>
   </div>
@@ -36,7 +36,7 @@
   const hiddenInput = document.getElementById('couleur');
 
   colorBlocks.forEach(block => {
-    block.addEventListener('click', function() {
+    block.addEventListener('click', function () {
       const selectedColor = this.getAttribute('data-color');
       hiddenInput.value = selectedColor;
 
