@@ -12,7 +12,6 @@ routeur.get('/suppression/:idGroup/:idRappel', CheckAppartenance, (req, res, nex
 
 routeur.get('/suppression/:idGroup/:idRappel/:choix', CheckAppartenance, async (req, res, next) => {
 
-    console.log("hello");
     const idRappel = parseInt(req.params.idRappel, 10);
 
     if (parseInt(req.params.choix, 2) === 1) {
