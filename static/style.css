@@ -331,6 +331,11 @@ table {
     width: 100%;
 }
 
+/*Pour l affichage de Quilljs*/
+#editor, .ql-toolbar {
+    background-color: #ffffff !important;
+}
+
 /*Pour couleur formulaire rappel*/
 #colorPicker {
     display: flex;
