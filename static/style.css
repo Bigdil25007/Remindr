@@ -8,6 +8,7 @@ body {
     padding-bottom: 70px;
 }
 
+
 .Text-imp {
     font-size: 2em
 }
@@ -19,6 +20,16 @@ body {
 }
 
 .Bouton-NoConnexion {
+    background-color: #fff;
+    padding: 30px;
+    margin-top: 60px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    width: 35%;
+    height: auto;
+}
+
+.Bouton-Suppr {
     background-color: #fff;
     padding: 30px;
     margin-top: 60px;
