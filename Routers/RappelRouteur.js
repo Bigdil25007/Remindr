@@ -40,6 +40,8 @@ routeur.post('/rappel/:idGroup', async (req, res) => {
     res.redirect('/groupes/' + idGroup);
 })
 
+
+
 //Modification Rappel
 routeur.get('/rappel/:idGroup/:idRappel', CheckAppartenance, async (req, res, next) => {
     //Récupération des données du rappel

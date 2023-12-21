@@ -2,7 +2,7 @@ const express = require('express');
 const routeur = express.Router();
 const { findGroupByName, findGroups, findRappelsFromGroup, findGroupNameById } = require('../Controllers/findControl');
 const { addMember, createGroup } = require('../Controllers/createControl');
-const { FormatterTab } = require('../Controllers/traitementControl');
+const { FormaterTab } = require('../Controllers/traitementControl');
 
 
 routeur.get('/dashboard', async (req, res) => {
@@ -22,7 +22,7 @@ routeur.get('/dashboard', async (req, res) => {
     rappels.push(resultat);
   }
 
-  const { rappelsAfaire, rappelsDepasse } = FormatterTab(rappels.flat());
+  const { rappelsAfaire, rappelsDepasse } = FormaterTab(rappels.flat());
 
   //Récupération du nom de chaque groupe (ajouté au tableau rappelsAfaire)
   for (let ind = 0; ind < rappelsAfaire.length; ind++) {

@@ -1,5 +1,4 @@
-
-function FormatterTab(tableau) {
+function FormaterTab(tableau) {
     /*
     On récupère le tableau de rappels et on passe tous les éléments à la même profondeur
     On a donc un tableau à 1 dimension au lieu de 2
@@ -28,7 +27,34 @@ function FormatterTab(tableau) {
         }
     });
 
+    //On passe les rappels en format utilisable
+    for (let i = 0; i < rappelsAfaire.length; i++) {
+        rappelsAfaire[i].dateCreation = FormaterDate(rappelsAfaire[i].dateCreation);
+        rappelsAfaire[i].dateFin = FormaterDate(rappelsAfaire[i].dateFin);
+    }
+
+    for (let i = 0; i < rappelsDepasse.length; i++) {
+        rappelsDepasse[i].dateCreation = FormaterDate(rappelsDepasse[i].dateCreation);
+        rappelsDepasse[i].dateFin = FormaterDate(rappelsDepasse[i].dateFin);
+    }
+
     return { rappelsAfaire, rappelsDepasse };
 };
 
-module.exports = { FormatterTab };
+function FormaterDate(dateBase) {
+    const date = new Date(dateBase);
+    const deuxChiffres = (num) => num.toString().padStart(2, '0');
+
+    const jour = deuxChiffres(date.getDate());
+    const mois = deuxChiffres(date.getMonth() + 1); // Les mois sont indexés à partir de 0
+    const annee = date.getFullYear();
+    const heure = deuxChiffres(date.getHours());
+    const minutes = deuxChiffres(date.getMinutes());
+
+    return `${jour}/${mois}/${annee} ${heure}:${minutes}`;
+}
+
+module.exports = {
+    FormaterTab,
+    FormaterDate
+};

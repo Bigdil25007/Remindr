@@ -14,7 +14,7 @@ const inscriptionRouteur = require('./Routers/InscriptionRouteur');
 const groupesRouteur = require('./Routers/GroupesRouteur');
 const erreurRouteur = require('./Routers/ErreurRouteur');
 const rappelRouteur = require('./Routers/RappelRouteur.js');
-
+const suppressionRouteur = require('./Routers/SuppressionRappelRouter');
 
 
 app.use(express.static('static'));
@@ -43,6 +43,7 @@ app.use(deconnexionRouteur);
 app.use(groupesRouteur);
 app.use(erreurRouteur);
 app.use(rappelRouteur);
+app.use(suppressionRouteur);
 
 
 app.get('/', (req, res) => {

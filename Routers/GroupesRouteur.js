@@ -3,7 +3,7 @@ const routeur = express.Router();
 const { CheckAppartenance } = require('../Middleware/appartenanceMiddle');
 const { findUserWithEmail, IsUserFromGroup, findRappelsFromGroup, findMembres, findFinishPerson } = require('../Controllers/findControl');
 const { addMember } = require('../Controllers/createControl');
-const { FormatterTab } = require('../Controllers/traitementControl');
+const { FormaterTab } = require('../Controllers/traitementControl');
 
 routeur.get('/groupes/:idGroup', CheckAppartenance, async (req, res, next) => {
   //try {
@@ -28,7 +28,7 @@ routeur.get('/groupes/:idGroup', CheckAppartenance, async (req, res, next) => {
     rappels[ind].checkNom = await findFinishPerson(rappels[ind].IDRappel);
   }
 
-  const { rappelsAfaire, rappelsDepasse } = FormatterTab(rappels);
+  const { rappelsAfaire, rappelsDepasse } = FormaterTab(rappels);
 
   const data = {
     rappelsAfaire: rappelsAfaire,
