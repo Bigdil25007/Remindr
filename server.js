@@ -13,7 +13,7 @@ const dashboardRouteur = require('./Routers/DashboardRouter');
 const inscriptionRouteur = require('./Routers/InscriptionRouteur');
 const groupesRouteur = require('./Routers/GroupesRouteur');
 const erreurRouteur = require('./Routers/ErreurRouteur');
-const rappelRouteur = require('./Routers/RappelRouteur.js');
+const rappelRouteur = require('./Routers/RappelRouteur');
 const suppressionRouteur = require('./Routers/SuppressionRappelRouter');
 
 
