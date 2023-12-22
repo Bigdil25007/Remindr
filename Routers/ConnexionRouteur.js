@@ -1,7 +1,6 @@
 const express = require('express');
-const SHA256 = require("crypto-js/sha256");
 const routeur = express.Router();
-const { findUserWithEmail } = require('../Controllers/findControl');
+const controller = require('../Controllers/connexionControl');
 
 routeur.get('/connexion', (req, res) => {
   res.render('Connexion');
@@ -9,28 +8,25 @@ routeur.get('/connexion', (req, res) => {
 
 
 routeur.post('/connexion', async (req, res) => {
-  //try {
-  const data = req.body;
-  const user = await findUserWithEmail(data.email);
+  const resultat = await controller.connectUser(req);
 
-  // Si l'utilisateur n'est pas trouvé => email incorrect
-  if (!user) {
-    res.redirect('/error/2');
-    return;
+  switch (resultat) {
+    case '2':
+      res.redirect('/error/2');
+      break;
+
+    case '3':
+      res.redirect('/error/3');
+      break;
+
+    case '0':
+      res.redirect('/dashboard');
+      break;
+
+    default:
+      res.redirect('/error/X');
+      break;
   }
-
-  // Si le mot de passe est incorrect
-  if (user.mdp !== SHA256(data.mdp).toString()) {
-    res.redirect('/error/3');
-    return;
-  }
-
-  req.session.user = user;
-  res.redirect('/dashboard');
-
-  /*} catch (err) {
-    res.redirect('/error/X');
-  }*/
 })
 
 module.exports = routeur;

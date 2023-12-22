@@ -1,79 +1,39 @@
 const express = require('express');
 const routeur = express.Router();
 const { CheckAppartenance } = require('../Middleware/appartenanceMiddle');
-const { findUserWithEmail, IsUserFromGroup, findRappelsFromGroup, findMembres, findFinishPerson } = require('../Controllers/findControl');
-const { addMember } = require('../Controllers/createControl');
-const { FormaterTab } = require('../Controllers/traitementControl');
+const controller = require('../Controllers/groupeControl');
 
 routeur.get('/groupes/:idGroup', CheckAppartenance, async (req, res, next) => {
-  //try {
-  const idGroup = parseInt(req.params.idGroup, 10);
+  const params = await controller.GetParamsGroupes(req);
 
-  let rappels = {
-    IDRappel: null,
-    titre: "",
-    description: "",
-    dateCreation: new Date(),
-    dateFin: new Date(),
-    IDGroup: null,
-    couleur: null,
-    checkNom: [], //liste les personnes ayant fini la tâche
-    fait: null  //permet de savoir si l'utilisateur a déjà fini la tâche
-  }
-
-  //On stocke les données de base des rappels
-  rappels = await findRappelsFromGroup(idGroup);
-
-  //On stocke en plus la liste des membres ayant fini la tâche
-  for (let ind = 0; ind < rappels.length; ind++) {
-    rappels[ind].checkNom = await findFinishPerson(rappels[ind].IDRappel);
-    rappels[ind].fait = rappels[ind].checkNom.some(person => person.prenom === req.session.user.prenom);
-  }
-
-  const { rappelsAfaire, rappelsDepasse } = FormaterTab(rappels);
-
-  const data = {
-    rappelsAfaire: rappelsAfaire,
-    rappelsDepasse: rappelsDepasse,
-    membres: await findMembres(idGroup),
-    IdGroup: idGroup
-  }
-
-  res.render('groupes', data);
-  /*} catch (err) {
+  if (params === 'X') {
     res.redirect('/error/X');
-  }*/
+  } else {
+    res.render('groupes', params);
+  }
 });
 
 
 routeur.post('/groupes/:idGroup', async (req, res) => {
-  //try {
-  //Ajout d'un utilisateur 
-  const idGroup = parseInt(req.params.idGroup, 10);
-  const email = req.body.emailUtilisateur;
+  const resultat = await controller.AddMemberGroup(req);
 
-  const user = await findUserWithEmail(email);
+  switch (resultat) {
+    case '4':
+      res.redirect('/error/4');
+      break;
 
-  //Utilisateur introuvable
-  if (!user) {
-    res.redirect('/error/4');
-    return;
+    case '5':
+      res.redirect('/error/5');
+      break;
+
+    case 'X':
+      res.redirect('/error/X');
+      break;
+
+    default:
+      res.redirect('/groupes/' + resultat);
+      break;
   }
-
-  //On regarde si la personne n'est pas deja sur le groupe
-  const check = await IsUserFromGroup(user.IDUser, idGroup);
-
-  if (check) {
-    res.redirect('/error/5');
-    return;
-  }
-
-  await addMember(user.IDUser, idGroup);
-  res.redirect('/groupes/' + idGroup);
-
-  /*} catch (err) {
-    res.redirect('/error/X');
-  }*/
 });
 
 module.exports = routeur;

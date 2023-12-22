@@ -1,4 +1,4 @@
-const { IsUserFromGroup } = require('../Controllers/findControl');
+const { IsUserFromGroup } = require('../Controllers/CRUD_traitement/findControl');
 
 //Permet de vérifier que l'utilisateur est connecté et fais partie du groupe
 async function CheckAppartenance(req, res, next) {

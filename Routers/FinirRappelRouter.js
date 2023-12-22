@@ -1,17 +1,16 @@
 const express = require('express');
 const routeur = express.Router();
 const { CheckAppartenance } = require('../Middleware/appartenanceMiddle');
-const { addFini } = require('../Controllers/createControl');
-const { removeFini } = require('../Controllers/removeControl');
+const controller = require('../Controllers/finirRappelControl');
 
 routeur.get('/finir/:idGroup/:idRappel/:choix', CheckAppartenance, async (req, res, next) => {
-    if (parseInt(req.params.choix, 2) === 0) { //Annuler
-        removeFini(parseInt(req.params.idRappel, 10), parseInt(req.session.user.IDUser, 10));
-    } else { //Finir
-        addFini(parseInt(req.params.idRappel, 10), parseInt(req.session.user.IDUser, 10));
-    }
+    const resultat = await controller.ManageFinishRappel(req);
 
-    res.redirect('/groupes/' + parseInt(req.params.idGroup, 10));
+    if (resultat === 'X') {
+        res.redirect('/error/X');
+    } else {
+        res.redirect('/groupes/' + parseInt(req.params.idGroup, 10));
+    }
 });
 
 module.exports = routeur;
