@@ -17,6 +17,7 @@ const connectUser = async (req) => {
             return '3';
         }
 
+        //On enregistre l'utilisateur en session
         req.session.user = user;
         return '0';
 

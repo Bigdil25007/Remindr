@@ -9,11 +9,12 @@ routeur.get('/rappel/:idGroup', CheckAppartenance, (req, res, next) => {
     res.render('rappel', params);
 })
 
+//Création Rappel
 routeur.post('/rappel/:idGroup', async (req, res) => {
     const resultat = await controller.PostNewRappel(req);
 
     switch (resultat) {
-        case '8':
+        case '8': //Mauvais sélection couleur
             res.redirect('/error/8');
             break;
         case 'X':
@@ -39,11 +40,12 @@ routeur.get('/rappel/:idGroup/:idRappel', CheckAppartenance, async (req, res, ne
     }
 })
 
+//Modification Rappel
 routeur.post('/rappel/:idGroup/:idRappel', async (req, res) => {
     const resultat = await controller.ModifyRappel(req);
 
     switch (resultat) {
-        case '8':
+        case '8': //Mauvais sélection couleur
             res.redirect('/error/8');
             break;
         case 'X':

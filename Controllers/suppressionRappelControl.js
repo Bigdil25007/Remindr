@@ -10,7 +10,7 @@ const GetParamsSuppression = (req) => {
 const ConfirmSupression = async (req) => {
     const idRappel = parseInt(req.params.idRappel, 10);
 
-    if (parseInt(req.params.choix, 2) === 1) {
+    if (parseInt(req.params.choix, 2) === 1) { //Confirmation
         await RemoveReminder(idRappel);
     }
 }

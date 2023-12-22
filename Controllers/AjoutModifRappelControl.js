@@ -14,6 +14,7 @@ const Couleur = [
 ]
 
 const GetParamsCreateRappel = (req) => {
+    //Pas besoin de try vu qu'on ne contacte pas la BdD
     const idGroup = parseInt(req.params.idGroup, 10);
     return { Couleur, idGroup };
 }
@@ -58,6 +59,7 @@ const ModifyRappel = async (req) => {
         if (!rappel.couleur) { //Si une couleur n'a pas été choisi
             return '8';
         }
+
         //On modifie le rappel et on renvoie l'utilisateur dans l'affichage du groupe
         await updateRappel(idRappel, rappel);
 
@@ -68,6 +70,7 @@ const ModifyRappel = async (req) => {
 }
 
 const GetNewParamsRappel = (req, idGroup) => {
+    //Permet de récupérer les données du formulaire
     const data = req.body;
 
     let rappel = {

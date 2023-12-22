@@ -27,6 +27,7 @@ const inscriptionMember = async (req) => {
         //Ajout de l'utilisateur dans la base de données et stockage en session
         const user = await addUser(profil);
         req.session.user = user;
+
     } catch (err) {
         return 'X';
     }

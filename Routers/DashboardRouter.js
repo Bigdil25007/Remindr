@@ -6,7 +6,7 @@ routeur.get('/dashboard', async (req, res) => {
   const resultat = await controller.GetParamsDashboard(req);
 
   switch (resultat) {
-    case '1':
+    case '1': //email inconnu
       res.render('blocked');
       break;
 
@@ -24,7 +24,7 @@ routeur.post('/dashboard', async (req, res) => {
   const resultat = await controller.AddGroup(req);
 
   switch (resultat) {
-    case '6':
+    case '6': //nom de groupe déjà existant
       res.redirect('/error/6');
       break;
 

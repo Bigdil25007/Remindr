@@ -1,9 +1,6 @@
 function FormaterTab(tableau) {
-    /*
-    On récupère le tableau de rappels et on passe tous les éléments à la même profondeur
-    On a donc un tableau à 1 dimension au lieu de 2
-    Ensuite on trie le tableau en fonction des dates dans l'ordre décroissant
-    */
+
+    //On trie le tableau en fonction des dates dans l'ordre décroissant
     let tabFormat = tableau.sort(function (a, b) {
         // Convertir les dates en objets Date
         let dateA = new Date(a.dateFin);
@@ -12,9 +9,7 @@ function FormaterTab(tableau) {
         return dateA - dateB;
     });
 
-    /* 
-    On va séparer le tableau en 2 sous tableaux pour séparer les rappels dépassés de ceux à faire
-    */
+    //On va séparer le tableau pour avoir d'un côté les rappels dépassés et d'un autre ceux à faire
     let rappelsAfaire = [];
     let rappelsDepasse = [];
     const currentTimestamp = new Date();
@@ -27,7 +22,7 @@ function FormaterTab(tableau) {
         }
     });
 
-    //On passe les rappels en format utilisable
+    //On passe les rappels au format JJ/MM/AAAA HH:MM
     for (let i = 0; i < rappelsAfaire.length; i++) {
         rappelsAfaire[i].dateCreation = FormaterDate(rappelsAfaire[i].dateCreation);
         rappelsAfaire[i].dateFin = FormaterDate(rappelsAfaire[i].dateFin);

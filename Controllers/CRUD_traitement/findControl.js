@@ -35,7 +35,7 @@ async function findGroupNameById(groupId) {
         where: {
             IDGroup: groupId,
         },
-        select: {
+        select: { //récupère seuleument le nom
             nom: true
         }
     });

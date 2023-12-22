@@ -18,11 +18,11 @@ routeur.post('/groupes/:idGroup', async (req, res) => {
   const resultat = await controller.AddMemberGroup(req);
 
   switch (resultat) {
-    case '4':
+    case '4': //utilisateur inconnu
       res.redirect('/error/4');
       break;
 
-    case '5':
+    case '5': //utilisateur déjà présent dans le groupe
       res.redirect('/error/5');
       break;
 

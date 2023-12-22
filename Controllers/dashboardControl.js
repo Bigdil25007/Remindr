@@ -18,6 +18,7 @@ const GetParamsDashboard = async (req) => {
             rappels.push(resultat);
         }
 
+        //Séparation des rappels en fonction de leur date (on fait .flat() car on a un tableau à 2 dimensions mais il faut un tableau à 1 dimension)
         const { rappelsAfaire, rappelsDepasse } = FormaterTab(rappels.flat());
 
         //Récupération du nom de chaque groupe (ajouté au tableau rappelsAfaire)
@@ -26,6 +27,7 @@ const GetParamsDashboard = async (req) => {
             rappelsAfaire[ind].nomGroup = groupInfo.nom;
         }
 
+        //Pour le dashboard on affiche le strict minimum en info
         let data = {
             groups: groups,
             rappelsAfaire: rappelsAfaire

@@ -7,7 +7,7 @@ const GetParamsGroupes = async (req) => {
     try {
         const idGroup = parseInt(req.params.idGroup, 10);
 
-        let rappels = {
+        let rappels = { //Valeurs par défaut
             IDRappel: null,
             titre: "",
             description: "",
@@ -25,6 +25,8 @@ const GetParamsGroupes = async (req) => {
         //On stocke en plus la liste des membres ayant fini la tâche
         for (let ind = 0; ind < rappels.length; ind++) {
             rappels[ind].checkNom = await findFinishPerson(rappels[ind].IDRappel);
+
+            //permet de retenir si l'utilisateur a fini la tâche en regardant dans la liste si on a l'utilisateur connecté
             rappels[ind].fait = rappels[ind].checkNom.some(person => person.prenom === req.session.user.prenom);
         }
 
@@ -46,7 +48,7 @@ const GetParamsGroupes = async (req) => {
 
 const AddMemberGroup = async (req) => {
     try {
-        //Ajout d'un utilisateur 
+        //On récupère l'id de l'utilisateur à ajouter
         const idGroup = parseInt(req.params.idGroup, 10);
         const email = req.body.emailUtilisateur;
 
@@ -57,7 +59,7 @@ const AddMemberGroup = async (req) => {
             return '4';
         }
 
-        //On regarde si la personne n'est pas deja sur le groupe
+        //On regarde si la personne n'est pas déjà sur le groupe
         const check = await IsUserFromGroup(user.IDUser, idGroup);
 
         if (check) {

@@ -11,11 +11,11 @@ routeur.post('/inscription', async (req, res) => {
   const resultat = await controller.inscriptionMember(req);
 
   switch (resultat) {
-    case '0':
+    case '0': //email déja utilisé
       res.redirect('/error/0');
       break;
 
-    case '1':
+    case '1': //confirmation mot de passe incorrect
       res.redirect('/error/1');
       break;
 
