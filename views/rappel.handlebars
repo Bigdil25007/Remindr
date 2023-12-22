@@ -1,21 +1,21 @@
 <form action="/rappel/{{idGroup}}/{{rappel.IDRappel}}" method="post" class="form-container add-rappel-container">
   <div class="form-group">
     <label for="titre">Titre</label>
-    <input type="text" id="titre" name="titre" required class="form-control">
+    <input type="text" id="titre" name="titre" required class="form-control" value="{{rappel.titre}}">
   </div>
   <div class="form-group form-add-reminder">
     <label for="description">Description</label>
     <!-- Conteneur pour l'éditeur Quill -->
     <div id="editor">
-        Entrez votre ici ! <!-- description par défaut -->
+      {{{rappel.description}}}
     </div>
-    <!-- Un champ caché pour transmettre données de ce que je comprends -->
+    <!-- Un champ caché pour transmettre données -->
     <input type="hidden" name="description" id="description">
   </div>
 
   <div class="form-group form-add-reminder">
     <label for="dateFin">Date de fin</label>
-    <input type="date" id="dateFin" name="dateFin" required class="form-control">
+    <input type="datetime-local" id="dateFin" name="dateFin" required class="form-control" value="{{rappel.dateFin}}">
   </div>
 
   <div class="form-group form-add-reminder">
@@ -36,17 +36,38 @@
 </form>
 
 <script>
+  //Gestion dateFin
   document.addEventListener('DOMContentLoaded', (event) => {
     // Obtenez l'élément input de type date
     var dateInput = document.getElementById('dateFin');
-    
+
     // Créez un objet Date pour obtenir la date d'aujourd'hui
     var today = new Date();
-    
-    // Convertissez la date au format AAAA-MM-JJ pour la valeur min
+
+    // Formatage de la date au format AAAA-MM-JJ
     var dateToday = today.toISOString().split('T')[0];
-    
+
+    // Formatage de l'heure au format HH:MM
+    var timeNow = today.toTimeString().split(' ')[0].substring(0, 5);
+
+    // Concaténation de la date et de l'heure pour obtenir AAAA-MM-JJTHH:MM
+    var dateTimeNow = dateToday + "T" + timeNow;
+
     // Définissez l'attribut min sur la date d'aujourd'hui pour l'input date
-    dateInput.setAttribute('min', dateToday);
+    dateInput.setAttribute('min', dateTimeNow);
   });
+
+  //Gestion QuillJS
+  document.addEventListener("DOMContentLoaded", function () {
+    var quill = new Quill('#editor', {
+      theme: 'snow'
+    });
+
+    var form = document.querySelector('.add-rappel-container');
+    form.onsubmit = function () {
+      var description = document.querySelector('input[name=description]');
+      description.value = quill.root.innerHTML;
+    };
+  });
+
 </script>

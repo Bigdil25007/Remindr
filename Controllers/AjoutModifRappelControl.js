@@ -18,17 +18,25 @@ const GetParamsCreateRappel = (req) => {
     return { Couleur, idGroup };
 }
 
+const GetParamsModifyRappel = async (req) => {
+    try {
+        const rappel = await findRappel(parseInt(req.params.idRappel, 10));
+        const idGroup = parseInt(req.params.idGroup, 10);
+        return { rappel, Couleur, idGroup };
+    } catch (err) {
+        return 'X';
+    }
+}
+
+
+
 const PostNewRappel = async (req) => {
     try {
         const idGroup = parseInt(req.params.idGroup, 10);
-        const data = req.body;
+        const rappel = GetNewParamsRappel(req, idGroup);
 
-        let rappel = {
-            titre: data.titre,
-            description: data.description,
-            dateFin: new Date(data.dateFin),
-            IDGroup: idGroup,
-            couleur: data.couleur
+        if (!rappel.couleur) { //Si une couleur n'a pas été choisi
+            return '8';
         }
 
         //On ajoute le rappel à la base de données et on renvoie l'utilisateur dans l'affichage du groupe
@@ -40,29 +48,16 @@ const PostNewRappel = async (req) => {
     }
 }
 
-const GetParamsModifyRappel = async (req) => {
-    try {
-        const rappel = await findRappel(parseInt(req.params.idRappel, 10));
-        const idGroup = parseInt(req.params.idGroup, 10);
-        return { rappel, Couleur, idGroup };
-    } catch (err) {
-        return 'X';
-    }
-}
 
 const ModifyRappel = async (req) => {
     try {
         const idGroup = parseInt(req.params.idGroup, 10);
         const idRappel = parseInt(req.params.idRappel, 10);
-        const data = req.body;
+        const rappel = GetNewParamsRappel(req, idGroup);
 
-        let rappel = {
-            titre: data.titre,
-            description: data.description,
-            dateFin: data.dateFin,
-            couleur: data.couleur
+        if (!rappel.couleur) { //Si une couleur n'a pas été choisi
+            return '8';
         }
-
         //On modifie le rappel et on renvoie l'utilisateur dans l'affichage du groupe
         await updateRappel(idRappel, rappel);
 
@@ -70,6 +65,20 @@ const ModifyRappel = async (req) => {
     } catch (err) {
         return 'X';
     }
+}
+
+const GetNewParamsRappel = (req, idGroup) => {
+    const data = req.body;
+
+    let rappel = {
+        titre: data.titre,
+        description: data.description,
+        dateFin: new Date(data.dateFin),
+        IDGroup: idGroup,
+        couleur: data.couleur
+    }
+
+    return rappel;
 }
 
 module.exports = {

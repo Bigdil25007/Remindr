@@ -10,7 +10,8 @@ const errorMessages = {
     '4': "L'utilisateur n'existe pas",
     '5': "L'utilisateur fait déjà partie du groupe",
     '6': "Ce nom de groupe existe déjà",
-    '7': "Vous n'avez pas accès à ce groupe"
+    '7': "Vous n'avez pas accès à ce groupe",
+    '8': "Vous n'avez pas sélectionné de couleur"
 };
 
 routeur.get('/error/:idError', (req, res) => {

@@ -26,7 +26,7 @@
           <td class="td" style="background-color: {{this.couleur}}">{{this.titre}}</td>
           <td class="td" style="background-color: {{this.couleur}}">{{this.dateCreation}}</td>
           <td class="td" style="background-color: {{this.couleur}}">{{this.dateFin}}</td>
-          <td class="td" style="background-color: {{this.couleur}}">{{this.description}}</td>
+          <td class="td" style="background-color: {{this.couleur}}">{{{this.description}}}</td>
           <td class="td" style="background-color: {{this.couleur}}">
             {{#each checkNom}}
             {{this.prenom}} {{this.nom}}<br>
@@ -35,10 +35,10 @@
           <td class="td ButtonUpdateAndSupprRappel">
             <a class="td ButtonUpdateRappel" href="/rappel/{{this.IDGroup}}/{{this.IDRappel}}"
               class="BoutonUpdateRappel">Modifier un
-              rappel !</a>
+              rappel</a>
             <a class="td ButtonSupprRappel" href="/suppression/{{this.IDGroup}}/{{this.IDRappel}}"
               class="BoutonUpdateRappel">Supprimer un
-              rappel !</a>
+              rappel</a>
           </td>
         </tr>
         {{/each}}

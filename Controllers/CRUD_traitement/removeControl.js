@@ -3,6 +3,14 @@ const prisma = new PrismaClient();
 
 
 async function RemoveReminder(rappelId) {
+    // Supprimez d'abord les enregistrements associés dans 'finir'
+    await prisma.finir.deleteMany({
+        where: {
+            IDRappel: rappelId
+        }
+    });
+
+    // Ensuite, supprimez le rappel dans 'reminders'
     const deletedReminder = await prisma.reminders.delete({
         where: {
             IDRappel: rappelId

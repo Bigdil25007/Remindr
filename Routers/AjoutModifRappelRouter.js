@@ -12,10 +12,17 @@ routeur.get('/rappel/:idGroup', CheckAppartenance, (req, res, next) => {
 routeur.post('/rappel/:idGroup', async (req, res) => {
     const resultat = await controller.PostNewRappel(req);
 
-    if (resultat === 'X') {
-        res.redirect('/error/X');
-    } else {
-        res.redirect('/groupes/' + idGroup);
+    switch (resultat) {
+        case '8':
+            res.redirect('/error/8');
+            break;
+        case 'X':
+            res.redirect('/error/X');
+            break;
+
+        default:
+            res.redirect('/groupes/' + resultat);
+            break;
     }
 })
 
@@ -35,10 +42,17 @@ routeur.get('/rappel/:idGroup/:idRappel', CheckAppartenance, async (req, res, ne
 routeur.post('/rappel/:idGroup/:idRappel', async (req, res) => {
     const resultat = await controller.ModifyRappel(req);
 
-    if (resultat === 'X') {
-        res.redirect('/error/X');
-    } else {
-        res.redirect('/groupes/' + idGroup);
+    switch (resultat) {
+        case '8':
+            res.redirect('/error/8');
+            break;
+        case 'X':
+            res.redirect('/error/X');
+            break;
+
+        default:
+            res.redirect('/groupes/' + resultat);
+            break;
     }
 })
 
