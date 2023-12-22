@@ -33,7 +33,7 @@ routeur.post('/dashboard', async (req, res) => {
       break;
 
     default:
-      res.redirect('/groupes/' + groupId);
+      res.redirect('/groupes/' + resultat);
       break;
   }
 });
