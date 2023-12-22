@@ -3,9 +3,11 @@
     <div class="box rappel-box">
       <h2>Rappels</h2>
     </div>
+    <!-- rappels à faire -->
     <div class="table-container top-box">
       <table>
-        <tr>
+        <tr> 
+          
           <th class="th-empty emptyFirst"></th>
           <th class="th titre">Titre</th>
           <th class="th date_debut">Date de création</th>
@@ -78,6 +80,7 @@
 
   <div class="Right-section">
     <button type="button" class="BoutonCreateUser" onclick="toggleUserForm()">Ajouter un utilisateur</button>
+    <!-- Formulaire d'ajout d'utilisateur (initialement masqué) -->
     <form method="post" class="form-user-container CreateUserButton" id="createUserForm" style="display: none;">
       <h2 class="mb-4">Formulaire d'ajout d'utilisateur</h2>
       <div class="mb-3">
@@ -107,6 +110,7 @@
     </div>
   </div>
 
+  <!--l'affichage/masquage du formulaire d'ajout d'utilisateur-->
   <script>
     function toggleUserForm() {
       var form = document.getElementById("createUserForm");

@@ -1,3 +1,4 @@
+<!-- Gestion générale des rappels -->
 <form action="/rappel/{{idGroup}}/{{rappel.IDRappel}}" method="post" class="form-container add-rappel-container">
   <div class="form-group">
     <label for="titre">Titre</label>
@@ -38,22 +39,11 @@
 <script>
   //Gestion dateFin
   document.addEventListener('DOMContentLoaded', (event) => {
-    // Obtenez l'élément input de type date
     var dateInput = document.getElementById('dateFin');
-
-    // Créez un objet Date pour obtenir la date d'aujourd'hui
     var today = new Date();
-
-    // Formatage de la date au format AAAA-MM-JJ
     var dateToday = today.toISOString().split('T')[0];
-
-    // Formatage de l'heure au format HH:MM
     var timeNow = today.toTimeString().split(' ')[0].substring(0, 5);
-
-    // Concaténation de la date et de l'heure pour obtenir AAAA-MM-JJTHH:MM
     var dateTimeNow = dateToday + "T" + timeNow;
-
-    // Définissez l'attribut min sur la date d'aujourd'hui pour l'input date
     dateInput.setAttribute('min', dateTimeNow);
   });
 

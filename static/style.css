@@ -104,7 +104,6 @@ body {
     margin: auto;
 }
 
-
 /* Contenue rappels et groupes (les données) */
 .table-container {
     display: flex;
@@ -130,11 +129,7 @@ table {
     text-align: center;
 }
 
-
-
-.td-empty,
-.ButtonCochable,
-.ButtonUpdateRappel {
+.td-empty, .ButtonCochable, .ButtonUpdateRappel {
     text-align: center;
 }
 
@@ -169,24 +164,16 @@ table {
     width: 5%;
 }
 
-.titre {
+.titre, .UserFinishTask {
     width: 15%;
 }
 
-.date_debut {
-    width: 10%;
-}
-
-.date_echeance {
+.date_debut, .date_echeance {
     width: 10%;
 }
 
 .description {
     width: 25%;
-}
-
-.UserFinishTask {
-    width: 15%;
 }
 
 .emptyEnd {
@@ -231,8 +218,7 @@ table {
     width: 100%;
 }
 
-.ButtonUpdateRappel,
-.ButtonSupprRappel {
+.ButtonUpdateRappel, .ButtonSupprRappel {
     text-decoration: none;
     background-color: rgb(152, 210, 230);
     color: #000000;
@@ -265,13 +251,11 @@ table {
     background-color: #1ddd479d;
 }
 
-.BoutonCreateRappel:hover,
-.BoutonCreateUser:hover {
+.BoutonCreateRappel:hover, .BoutonCreateUser:hover {
     background-color: rgba(120, 174, 192, 0.863);
 }
 
-.CreateGroupButton,
-.CreateUserButton {
+.CreateGroupButton, .CreateUserButton {
     margin-top: 20px;
 }
 
