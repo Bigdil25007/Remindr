@@ -8,7 +8,6 @@ body {
     padding-bottom: 70px;
 }
 
-
 .Text-imp {
     font-size: 2em
 }
@@ -329,6 +328,11 @@ table {
 .btn-add-reminder {
     margin-left: 60%;
     width: 100%;
+}
+
+/*Pour l affichage de Quilljs*/
+#editor, .ql-toolbar {
+    background-color: #ffffff !important;
 }
 
 /*Pour couleur formulaire rappel*/

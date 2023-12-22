@@ -1,12 +1,16 @@
-<form action="/rappel/{{idGroup}}" method="post" class="form-container add-rappel-container">
+<form action="/rappel/{{idGroup}}/{{rappel.IDRappel}}" method="post" class="form-container add-rappel-container">
   <div class="form-group">
     <label for="titre">Titre</label>
     <input type="text" id="titre" name="titre" required class="form-control">
   </div>
-
   <div class="form-group form-add-reminder">
     <label for="description">Description</label>
-    <textarea id="description" name="description" required class="form-control"></textarea>
+    <!-- Conteneur pour l'éditeur Quill -->
+    <div id="editor">
+        Entrez votre ici ! <!-- description par défaut -->
+    </div>
+    <!-- Un champ caché pour transmettre données de ce que je comprends -->
+    <input type="hidden" name="description" id="description">
   </div>
 
   <div class="form-group form-add-reminder">
@@ -32,122 +36,17 @@
 </form>
 
 <script>
-  const colorBlocks = document.querySelectorAll('#colorPicker .color-block');
-  const hiddenInput = document.getElementById('couleur');
-
-  colorBlocks.forEach(block => {
-    block.addEventListener('click', function () {
-      const selectedColor = this.getAttribute('data-color');
-      hiddenInput.value = selectedColor;
-
-      // Enlever la classe 'selected' de tous les blocs
-      colorBlocks.forEach(b => b.classList.remove('selected'));
-
-      // Ajouter la classe 'selected' au bloc actuellement cliqué
-      this.classList.add('selected');
-    });
+  document.addEventListener('DOMContentLoaded', (event) => {
+    // Obtenez l'élément input de type date
+    var dateInput = document.getElementById('dateFin');
+    
+    // Créez un objet Date pour obtenir la date d'aujourd'hui
+    var today = new Date();
+    
+    // Convertissez la date au format AAAA-MM-JJ pour la valeur min
+    var dateToday = today.toISOString().split('T')[0];
+    
+    // Définissez l'attribut min sur la date d'aujourd'hui pour l'input date
+    dateInput.setAttribute('min', dateToday);
   });
 </script>
-
-
-
-
-
-
-<!--avec Couleur du routeur -->
-<!--
-<form action="/rappel/{{idGroup}}" method="post" class="form-container add-rappel-container">
-  <div class="form-group">
-    <label for="titre">Titre</label>
-    <input type="text" id="titre" name="titre" required class="form-control">
-  </div>
-  <div class="form-group form-add-reminder">
-    <label for="description">Description</label>
-    <textarea id="description" name="description" required class="form-control"></textarea>
-  </div>
-  <div class="form-group form-add-reminder">
-    <label for="dateFin">Date de fin</label>
-    <input type="date" id="dateFin" name="dateFin" required class="form-control">
-  </div>
-  <div class="form-group form-add-reminder">
-    <label for="couleur">Couleur</label>
-    <select id="couleur" name="couleur" class="form-control">
-      {{#each Couleur}}
-        <option value="{{this}}">{{this}}</option>
-      {{/each}}
-    </select>
-  </div>
-  <div class="btn-add-reminder form-add-reminder">
-    <button type="submit" class="btn btn-primary btn-submit btn-valider">Valider</button>
-  </div>
-</form>
--->
-
-
-<!--avec Couleur du routeur et case coloré-->
-<!--
-<form action="/rappel/{{idGroup}}" method="post" class="form-container add-rappel-container">
-  <div class="form-group">
-    <label for="titre">Titre</label>
-    <input type="text" id="titre" name="titre" required class="form-control">
-  </div>
-  
-  <div class="form-group form-add-reminder">
-    <label for="description">Description</label>
-    <textarea id="description" name="description" required class="form-control"></textarea>
-  </div>
-  
-  <div class="form-group form-add-reminder">
-    <label for="dateFin">Date de fin</label>
-    <input type="date" id="dateFin" name="dateFin" required class="form-control">
-  </div>
-  
-  <div class="form-group form-add-reminder">
-    <label for="couleur">Couleur</label>
-    <select id="couleur" name="couleur" class="form-control">
-      {{#each Couleur}}
-        <option value="{{this}}" style="background-color: {{this}};">{{this}}</option>
-      {{/each}}
-    </select>
-  </div>
-  
-  <div class="btn-add-reminder form-add-reminder">
-    <button type="submit" class="btn btn-primary btn-submit btn-valider">Valider</button>
-  </div>
-</form>
--->
-
-
-<!--avec sélecteur de couleurs HTML -->
-<!--
-<form action="/rappel/{{idGroup}}" method="post" class="form-container add-rappel-container">
-  <div class="form-group">
-    <label for="titre">Titre</label>
-    <input type="text" id="titre" name="titre" required class="form-control">
-  </div>
-  
-  <div class="form-group form-add-reminder">
-    <label for="description">Description</label>
-    <textarea id="description" name="description" required class="form-control"></textarea>
-  </div>
-  
-  <div class="form-group form-add-reminder">
-    <label for="dateFin">Date de fin</label>
-    <input type="date" id="dateFin" name="dateFin" required class="form-control">
-  </div>
-  
-  <div class="form-group form-add-reminder">
-    <label for="couleur">Couleur</label>
-    <input type="color" id="couleur" name="couleur" class="form-control" list="presetColors">
-    <datalist id="presetColors">
-      {{#each Couleur}}
-        <option value="{{this}}"></option>
-      {{/each}}
-    </datalist>
-  </div>
-  
-  <div class="btn-add-reminder form-add-reminder">
-    <button type="submit" class="btn btn-primary btn-submit btn-valider">Valider</button>
-  </div>
-</form>
--->
